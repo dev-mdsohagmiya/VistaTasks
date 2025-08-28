@@ -25,7 +25,7 @@ const App = () => {
       id: 1,
       title: "Title Name",
       description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsumffffffffffffffffffffffffffffffffffffffffffffffffffff...",
+        "Lorem Ipsum is simply dummy text of th e printing and typesetting industry. Lorem Ipsumfff fffffff fffffffffffff fffffffffffffff fffffffff fffff...",
       date: "Mon, 25 Aug 2025",
       completed: false,
     },
@@ -47,7 +47,7 @@ const App = () => {
         <SearchAndFilterSection setSearchTerm={setShowAddModal} searchTerm={searchTerm} filter={filter} setFilter={setFilter} />
 
         {/* Tasks Section Header */}
-        <TasksSection mockTodos={mockTodos} />
+        <TasksSection setShowAddModal={setShowAddModal} mockTodos={mockTodos} />
 
       </div>
 

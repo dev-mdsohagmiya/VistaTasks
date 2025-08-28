@@ -1,6 +1,6 @@
 export const StatsCard = ({ stats }: any) => {
     return <>
-        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-4 sm:p-6 pb-4 sm:pb-5 mb-5">
+        <div className="bg-white  shadow-[0_4px_8px_rgba(0,0,0,0.25)] dark:bg-gray-900 rounded-[10px]  border border-gray-200 dark:border-gray-800  py-3   mb-5">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-8 text- sm:[16px] font-semibold text-gray-900 dark:text-gray-100">
                 <div className="sm:text-center">
                     <div className="mb">

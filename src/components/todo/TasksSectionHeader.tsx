@@ -9,7 +9,7 @@ export const TasksHeader = ({ setShowAddModal }: any) => {
             </h2>
             <button
                 onClick={() => setShowAddModal(true)}
-                className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                className="flex items-center gap-2 h-[50px] bg-[#15803D] hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors text-[20px] shadow-[0_2px_8px_rgba(0,0,0,0.25)]"
             >
                 <Plus className="w-5 h-5" />
                 Add Task
