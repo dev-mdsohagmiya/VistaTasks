@@ -1,6 +1,6 @@
 import { User } from "lucide-react";
 
-export const Header = ({ stats, showUserMenu, setShowUserMenu }: any) => {
+export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
   return (
     <div className="sticky top-0 z-40 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b border-gray-200  shadow-[0_4px_8px_rgba(0,0,0,0.02)]">
       <div className="max-w-6xl mx-auto px-6 py-4">

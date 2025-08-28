@@ -1,15 +1,7 @@
 import { Calendar, Edit3, Trash2 } from "lucide-react";
 
-type Todo = {
-    id: number;
-    title: string;
-    description: string;
-    date: string;
-    completed: boolean;
-};
 
-
-export const TaskCard = ({ todo }: { todo: Todo }) => {
+export const TaskCard = ({ todo }) => {
     return (
         <div
             key={todo.id}
@@ -66,7 +58,6 @@ export const TaskCard = ({ todo }: { todo: Todo }) => {
                                 </button>
                             )}
                         </p>
-
                     </div>
                 </div>
                 <div className=" flex-3">

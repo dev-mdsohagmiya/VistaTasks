@@ -1,6 +1,6 @@
 import { Search, X } from "lucide-react";
 
-export const SearchAndFilterSection = ({ setSearchTerm, searchTerm, filter, setFilter }: any) => {
+export const SearchAndFilterSection = ({ setSearchTerm, searchTerm, filter, setFilter }) => {
     return <>
         <div className="bg-white dark:bg-gray-900 rounded-[10px]  shadow-[0_4px_8px_rgba(0,0,0,0.25)] border border-gray-200 dark:border-gray-800 p-6 mb-8">
             <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">

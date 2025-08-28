@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react";
 
-export const TasksHeader = ({ setShowAddModal }: any) => {
+export const TasksHeader = ({ setShowAddModal }) => {
     return <>
 
         <div className="flex items-center justify-between mb-6">
