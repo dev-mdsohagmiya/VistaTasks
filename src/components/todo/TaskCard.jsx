@@ -1,7 +1,7 @@
 import { Calendar, Edit3, Trash2 } from "lucide-react";
 
 
-export const TaskCard = ({ todo }) => {
+export const TaskCard = ({ todo, handleDeleteTask, setShowAddModal }) => {
     return (
         <div
             key={todo.id}
@@ -69,11 +69,11 @@ export const TaskCard = ({ todo }) => {
                         <div className="flex items-center gap-2 ml-2 sm:ml-4">
                             {!todo.completed && (
                                 <button className="p-1.5 sm:p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">
-                                    <Edit3 className="w-[30px]  h-[30px]" />
+                                    <Edit3 onClick={() => setShowAddModal(true, todo)} className="w-[30px]  h-[30px]" />
                                 </button>
                             )}
                             <button className="p-1.5 sm:p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                                <Trash2 className="w-[26px] h-[30px]" />
+                                <Trash2 onClick={() => handleDeleteTask(todo?.id)} className="w-[26px] h-[30px]" />
                             </button>
                         </div>
                     </div>

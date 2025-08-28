@@ -1,5 +1,5 @@
 export const alertMessage = (toast, message) => {
-    return toast(message, {
+    return toast.success(message, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

@@ -3,7 +3,7 @@ import { TaskCard } from "./TaskCard"
 import { TasksHeader } from "./TasksSectionHeader"
 import { TodoContext } from "../../contexts";
 
-export const TasksSection = ({ mockTodos, setShowAddModal }) => {
+export const TasksSection = ({ mockTodos, setShowAddModal, handleDeleteTask }) => {
     const { state, dispatch } = useContext(TodoContext);
 
 
@@ -13,8 +13,8 @@ export const TasksSection = ({ mockTodos, setShowAddModal }) => {
         <TasksHeader setShowAddModal={setShowAddModal} />
 
         <div className="space-y-4">
-            {state.reverse().map((todo) => (
-                <TaskCard todo={todo} />
+            {state?.todos.reverse().map((todo) => (
+                <TaskCard setShowAddModal={setShowAddModal} handleDeleteTask={handleDeleteTask} todo={todo} />
             ))}
         </div>
     </>

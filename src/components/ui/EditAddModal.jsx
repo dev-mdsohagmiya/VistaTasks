@@ -3,11 +3,21 @@ import { useForm } from "react-hook-form"
 import { Calendar, X } from "lucide-react";
 
 export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
+    const { state } = useContext(TodoContext);
+    const editData = state?.todos.filter((item) => item === state.delete)
+
     const {
+
         register,
         formState: { errors },
         handleSubmit,
-    } = useForm()
+    } = useForm({
+        defaultValues: {
+            title: editData?.title ? editData.title : "",
+            description: editData?.description ? editData.description : "",
+            date: editData?.date ? editData.date : "",
+        }
+    })
 
     console.log(errors)
     const onSubmit = (data) => {

@@ -7,6 +7,8 @@ import { TasksSection } from "./TasksSection";
 import { TodoContext } from "../../contexts";
 import { alertMessage } from "../../utils/alertMessage";
 import { toast } from "react-toastify";
+import { todoModel } from "../../models/todoModel";
+import { v4 as uuidv4 } from 'uuid';
 
 const Todo = () => {
     const { state, dispatch } = useContext(TodoContext);
@@ -23,23 +25,21 @@ const Todo = () => {
         completed: 2,
     };
 
-    const mockTodos = [
-        {
-            id: 1,
-            title: "Title Name",
-            description:
-                "Lorem Ipsum is simply dummy text of th e printing and typesetting industry. Lorem Ipsumfff fffffff fffffffffffff fffffffffffffff fffffffff fffff...",
-            date: "Mon, 25 Aug 2025",
-            completed: false,
-        },
-    ];
-
 
     const handleAddTask = (data) => {
-        dispatch({ type: "ADD_TASK", payload: data })
+        dispatch({ type: "ADD_TASK", payload: todoModel({ id: uuidv4(), description: data?.description, isCompleted: false, time: data?.time, title: data.title }) })
         alertMessage(toast, "data added success")
     }
 
+    const handleDeleteTask = (id) => {
+        window.alert(id)
+        dispatch({ type: "DELETE_TASK", payload: id })
+    }
+
+    const handleUpdateTask = (id) => {
+        dispatch({ type: "ADD_UPDATE_TASK_ID", payload: id })
+
+    }
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-950">
             {/* Header */}
@@ -56,7 +56,7 @@ const Todo = () => {
                 <SearchAndFilterSection setSearchTerm={setShowAddModal} searchTerm={searchTerm} filter={filter} setFilter={setFilter} />
 
                 {/* Tasks Section Header */}
-                <TasksSection setShowAddModal={setShowAddModal} mockTodos={mockTodos} />
+                <TasksSection handleUpdateTask={handleUpdateTask} handleDeleteTask={handleDeleteTask} setShowAddModal={setShowAddModal} mockTodos={""} />
 
             </div>
 
