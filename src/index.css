@@ -4,3 +4,33 @@
 body {
   font-family: "Inter", sans-serif;
 }
+
+/* Custom Toast Styles */
+.custom-toast {
+  border-radius: 10px !important;
+  font-family: "Inter", sans-serif !important;
+  border: none !important;
+}
+
+/* Toast Animation Classes */
+.toast-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.toast-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 300ms ease-out;
+}
+
+.toast-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast-exit-active {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 300ms ease-in;
+}
