@@ -8,6 +8,8 @@
 //     time: '2025-08-28T10:00:00+06:00',
 // };
 
+import { addTodoLocalStorage } from "../db/localStorage.db";
+
 
 // Define initial state
 const initialState = {
@@ -21,11 +23,15 @@ const initialState = {
 const todoReducer = (state, action) => {
     switch (action.type) {
         case 'ADD_TASK':
-            return { ...state, todos: [action.payload, ...state.todos] }
+            const addTaskData = { ...state, todos: [action.payload, ...state.todos] }
+            addTodoLocalStorage(addTaskData)
+            return addTaskData
 
         case 'DELETE_TASK':
             const filterData = state?.todos.filter((item) => item.id !== action.payload)
-            return { ...state, todos: filterData }
+            const updatedFilderedData = { ...state, todos: filterData }
+            addTodoLocalStorage(updatedFilderedData)
+            return updatedFilderedData
         case 'UPDATE_TASK':
             const updated = state?.todos.map((item) => {
                 if (item.id === action.payload?.data?.id) {
@@ -68,8 +74,19 @@ const todoReducer = (state, action) => {
             }
         case 'TASK_SHORTING':
             return { ...state, stats: action.payload }
+
         case 'SEARCH_TASK':
             return { ...state, searchParams: action.payload }
+
+        case 'UPDATE_WITH_LOCAL_STORAGE_DATA':
+            console.log(action.payload)
+            if (action.payload) {
+                console.log(action.payload)
+                return action.payload
+            }
+            else {
+                return state
+            }
 
         default:
             return state;
