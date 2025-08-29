@@ -2,9 +2,11 @@ import { User, Sun, Moon, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { auth, signInWithGoogle } from "../../services/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { ThemeContext } from "../../contexts";
 
 export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
+  const { darkMode, setDarkMode } = useContext(ThemeContext);
   const [user, loading, error] = useAuthState(auth);
   const menuRef = useRef(null);
 
@@ -34,7 +36,7 @@ export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
 
   return (
     <motion.div
-      className="sticky top-0 z-40 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b border-gray-200 shadow-[0_4px_8px_rgba(0,0,0,0.02)]"
+      className="sticky top-0 z-40 bg-white/90 dark:bg-gray-900/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-gray-900/70 border-b border-gray-200 dark:border-gray-700 shadow-[0_4px_8px_rgba(0,0,0,0.02)] dark:shadow-[0_4px_8px_rgba(0,0,0,0.3)]"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -57,7 +59,7 @@ export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
             />
             <div>
               <motion.p
-                className="text-base font-semibold text-gray-900 leading-none"
+                className="text-base font-semibold text-gray-900 dark:text-white leading-none"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -65,7 +67,7 @@ export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
                 VistaTasks
               </motion.p>
               <motion.p
-                className="text-xs text-gray-500"
+                className="text-xs text-gray-500 dark:text-gray-400"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
@@ -114,7 +116,7 @@ export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
               <AnimatePresence mode="wait">
                 {showUserMenu && (
                   <motion.div
-                    className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200"
+                    className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700"
                     initial={{ opacity: 0, y: -10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -122,7 +124,7 @@ export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
                   >
                     <motion.button
                       onClick={() => handleSocialLogin()}
-                      className="w-full px-4 py-3 text-left text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-3"
+                      className="w-full px-4 py-3 text-left text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-3"
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.2 }}
                     >
@@ -150,15 +152,26 @@ export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
                       <span className="leading-none">Google for Backup</span>
                     </motion.button>
                     <motion.button
-                      className="w-full px-4 py-3 text-left text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-3"
+                      onClick={() => {
+                        if (darkMode) {
+                          setDarkMode(false);
+                        } else {
+                          setDarkMode(true);
+                        }
+                      }}
+                      className="w-full px-4 py-3 text-left text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-3"
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Sun className="w-4 h-4" />
-                      Light Mode
+                      {darkMode ? (
+                        <Moon className="w-4 h-4" />
+                      ) : (
+                        <Sun className="w-4 h-4" />
+                      )}
+                      {darkMode ? "Light Mode" : "Dark Mode"}
                     </motion.button>
                     <motion.button
-                      className="w-full px-4 py-3 text-left text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-3"
+                      className="w-full px-4 py-3 text-left text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-3"
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.2 }}
                     >
