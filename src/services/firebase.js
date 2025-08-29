@@ -5,7 +5,7 @@ import {
     GoogleAuthProvider,
     signInWithPopup
 } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, setDoc, doc } from "firebase/firestore";
 import { getUserLocalStorage } from "../db/localStorage.db";
 
 
@@ -40,11 +40,18 @@ const signInWithGoogle = async () => {
 }
 
 
-const addTodoToFirefire = async (data) => {
+const addTodoToFirebase = async (data) => {
     // Add a new document in collection "cities"
     const user = getUserLocalStorage()
-    const res = await setDoc(doc(db, "todo", "LA"), data);
-    console.log("data insert res", res)
+
+    if (user) {
+        const res = await setDoc(doc(db, "todo", user.uid), { todos: data });
+        return res
+    }
+    else {
+        return null
+    }
+
 
 }
 
@@ -56,4 +63,4 @@ const addTodoToFirefire = async (data) => {
 
 
 
-export { auth, signInWithGoogle, db };
+export { auth, signInWithGoogle, db, addTodoToFirebase };

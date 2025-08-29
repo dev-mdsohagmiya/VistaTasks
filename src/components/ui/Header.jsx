@@ -32,6 +32,7 @@ export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
 
   const handleSocialLogin = async () => {
     const user = await signInWithGoogle();
+    console.log(user)
     addUserLocalStorage(user);
     showSuccessToast(toast, "Login Successful");
     setShowUserMenu(false); // Hide dropdown after login

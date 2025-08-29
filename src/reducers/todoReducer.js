@@ -9,6 +9,7 @@
 // };
 
 import { addTodoLocalStorage } from "../db/localStorage.db";
+import { addTodoToFirebase } from "../services/firebase";
 
 
 // Define initial state
@@ -24,6 +25,10 @@ const todoReducer = (state, action) => {
     switch (action.type) {
         case 'ADD_TASK':
             const addTaskData = { ...state, todos: [action.payload, ...state.todos] }
+            addTodoToFirebase([action.payload, ...state.todos]).then((user) => {
+                console.log("from reducer", user)
+            })
+            // console.log("from reducer", user)
             addTodoLocalStorage(addTaskData)
             return addTaskData
 
