@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { todoModel } from "../../models/todoModel";
 import { v4 as uuidv4 } from "uuid";
 import { DeleteConfirmModal } from "../ui/DeleteConfirmModal";
+import { formatDate } from "../../utils/formatDate";
 
 const Todo = () => {
   const { state, dispatch } = useContext(TodoContext);
@@ -30,13 +31,14 @@ const Todo = () => {
   };
 
   const handleAddTask = (data) => {
+    console.log("data___________________", data)
     dispatch({
       type: "ADD_TASK",
       payload: todoModel({
         id: uuidv4(),
         description: data?.description,
         isCompleted: false,
-        time: data?.time,
+        time: formatDate(data?.time),
         title: data.title,
       }),
     });
