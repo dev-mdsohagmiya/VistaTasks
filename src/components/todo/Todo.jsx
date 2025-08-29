@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Header } from "../ui/Header";
 import { StatsCard } from "./StatsCard";
 import { SearchAndFilterSection } from "./SearchAndFilterSection";
@@ -11,6 +11,7 @@ import { todoModel } from "../../models/todoModel";
 import { v4 as uuidv4 } from "uuid";
 import { DeleteConfirmModal } from "../ui/DeleteConfirmModal";
 import { formatDate } from "../../utils/formatDate";
+import { getTodoFirebase } from "../../services/firebase";
 
 const Todo = () => {
   const { state, dispatch } = useContext(TodoContext);
@@ -80,6 +81,10 @@ const Todo = () => {
     setDeleteTaskTitle(title);
     setShowDeleteModal(true);
   };
+
+  useEffect(() => {
+    getTodoFirebase()
+  }, [])
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-950">
       {/* Header */}

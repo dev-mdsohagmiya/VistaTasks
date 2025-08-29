@@ -5,7 +5,7 @@ import {
     GoogleAuthProvider,
     signInWithPopup
 } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs, setDoc, doc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, setDoc, doc, onSnapshot } from "firebase/firestore";
 import { getUserLocalStorage } from "../db/localStorage.db";
 
 
@@ -53,6 +53,22 @@ const addTodoToFirebase = async (data) => {
     }
 
 
+
+
+}
+
+const getTodoFirebase = () => {
+    const user = getUserLocalStorage()
+
+    const docRef = doc(db, "todo", user.uid);
+    onSnapshot(docRef, (docSnap) => {
+        if (docSnap.exists()) {
+            console.log("Real-time data:", docSnap.data());
+        } else {
+            console.log("No such document!");
+        }
+    });
+
 }
 
 
@@ -62,5 +78,4 @@ const addTodoToFirebase = async (data) => {
 
 
 
-
-export { auth, signInWithGoogle, db, addTodoToFirebase };
+export { auth, signInWithGoogle, db, addTodoToFirebase, getTodoFirebase };

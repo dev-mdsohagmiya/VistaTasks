@@ -35,10 +35,14 @@ const todoReducer = (state, action) => {
         case 'DELETE_TASK':
             const filterData = state?.todos.filter((item) => item.id !== action.payload)
             const updatedFilderedData = { ...state, todos: filterData }
+            addTodoToFirebase(filterData).then((res) => {
+                console.log("from reducer", res)
+            })
             addTodoLocalStorage(updatedFilderedData)
             return updatedFilderedData
         case 'UPDATE_TASK':
             const updated = state?.todos.map((item) => {
+
                 if (item.id === action.payload?.data?.id) {
                     return {
                         ...item,
@@ -48,6 +52,7 @@ const todoReducer = (state, action) => {
                     }
 
                 }
+
                 else {
                     return item
                 }
@@ -55,6 +60,9 @@ const todoReducer = (state, action) => {
 
             // remove edit id.
             action.payload.dispatch({ type: "REMOVE_UPDATE_TASK_ID", payload: null })
+            addTodoToFirebase([updated]).then((res) => {
+                console.log("from reducer", res)
+            })
             return { ...state, todos: updated }
         case 'ADD_UPDATE_TASK_ID':
             return { ...state, delete: action.payload }
