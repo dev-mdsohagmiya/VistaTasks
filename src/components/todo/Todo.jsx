@@ -31,7 +31,7 @@ const Todo = () => {
   };
 
   const handleAddTask = (data) => {
-    console.log("data___________________", data)
+    console.log("data___________________", data);
     dispatch({
       type: "ADD_TASK",
       payload: todoModel({
@@ -62,7 +62,13 @@ const Todo = () => {
     dispatch({ type: "ADD_UPDATE_TASK_ID", payload: id });
   };
   const handleTaskCompletation = (id) => {
-    dispatch({ type: "COMPLETE_TASK", payload: id });
+    console.log("handleTaskCompletation called with id:", id);
+    try {
+      dispatch({ type: "COMPLETE_TASK", payload: id });
+      console.log("Task completion dispatched successfully");
+    } catch (error) {
+      console.error("Error completing task:", error);
+    }
   };
   const handleTaskSorting = (stats) => {
     dispatch({ type: "TASK_SHORTING", payload: stats });

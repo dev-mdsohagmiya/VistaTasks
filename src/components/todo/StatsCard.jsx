@@ -50,7 +50,7 @@ export const StatsCard = ({ stats }) => {
         transition: { duration: 0.2 },
       }}
     >
-      <div className="grid grid-cols-1 sm:grid-cols-3 p-4 gap-[2px] md:gap-2 sm:gap-8 text-sm sm:text-[16px] font-semibold text-gray-900 dark:text-gray-100">
+      <div className="grid grid-cols-1 sm:grid-cols-3 p-4 gap-[2px] md:gap-2 sm:gap-8 text-[15px] sm:text-[16px] font-semibold text-gray-900 dark:text-gray-100">
         <motion.div
           className="sm:text-center"
           variants={itemVariants}
