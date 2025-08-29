@@ -65,6 +65,8 @@ const todoReducer = (state, action) => {
             return {
                 ...state, todos: updateComplete
             }
+        case 'TASK_SHORTING':
+            return { ...state, stats: action.payload }
         default:
             return state;
     }

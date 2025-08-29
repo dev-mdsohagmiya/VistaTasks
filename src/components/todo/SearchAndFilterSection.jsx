@@ -1,6 +1,10 @@
 import { Search, X } from "lucide-react";
+import { TodoContext } from "../../contexts";
+import { useContext } from "react";
 
-export const SearchAndFilterSection = ({ setSearchTerm, searchTerm, filter, setFilter }) => {
+export const SearchAndFilterSection = ({ setSearchTerm, searchTerm, filter, handleTaskSorting }) => {
+    const { state, dispatch } = useContext(TodoContext);
+
     return <>
         <div className="bg-white dark:bg-gray-900 rounded-[10px]  shadow-[0_4px_8px_rgba(0,0,0,0.25)] border border-gray-200 dark:border-gray-800 p-6 mb-8">
             <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
@@ -34,8 +38,8 @@ export const SearchAndFilterSection = ({ setSearchTerm, searchTerm, filter, setF
 
                     <div className="relative w-full sm:w-auto text-[16px]">
                         <select
-                            value={filter}
-                            onChange={(e) => setFilter(e.target.value)}
+                            value={state?.stats}
+                            onChange={(e) => handleTaskSorting(e.target.value)}
                             className="appearance-none px-4 py-3 pr-10 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full sm:w-auto text-[16px]"
                         >
                             <option>All</option>
