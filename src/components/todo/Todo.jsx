@@ -40,6 +40,9 @@ const Todo = () => {
         dispatch({ type: "ADD_UPDATE_TASK_ID", payload: id })
 
     }
+    const handleTaskCompletation = (id) => {
+        dispatch({ type: "COMPLETE_TASK", payload: id })
+    }
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-950">
             {/* Header */}
@@ -56,7 +59,7 @@ const Todo = () => {
                 <SearchAndFilterSection setSearchTerm={setShowAddModal} searchTerm={searchTerm} filter={filter} setFilter={setFilter} />
 
                 {/* Tasks Section Header */}
-                <TasksSection handleUpdateTask={handleUpdateTask} handleDeleteTask={handleDeleteTask} setShowAddModal={setShowAddModal} mockTodos={""} />
+                <TasksSection handleUpdateTask={handleUpdateTask} handleDeleteTask={handleDeleteTask} setShowAddModal={setShowAddModal} mockTodos={""} handleTaskCompletation={handleTaskCompletation} />
 
             </div>
 

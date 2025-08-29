@@ -1,7 +1,7 @@
 import { Calendar, Edit3, Trash2 } from "lucide-react";
 
 
-export const TaskCard = ({ todo, handleDeleteTask, setShowAddModal, handleUpdateTask }) => {
+export const TaskCard = ({ todo, handleDeleteTask, setShowAddModal, handleUpdateTask, handleTaskCompletation }) => {
     return (
         <div
             key={todo.id}
@@ -12,12 +12,14 @@ export const TaskCard = ({ todo, handleDeleteTask, setShowAddModal, handleUpdate
                     <div className="flex gap-2 w-full">
                         <div>
                             <button
-                                className={`mt-1 w-5 h-5 sm:w-5 sm:h-5 rounded border-2 flex items-center justify-center transition-colors ${todo.completed
+                                onClick={() => handleTaskCompletation(todo.id)}
+
+                                className={`mt-1 w-5 h-5 sm:w-5 sm:h-5 rounded border-2 flex items-center justify-center transition-colors ${todo.isCompleted
                                     ? "bg-green-500 border-green-500"
                                     : "border-gray-300 hover:border-green-500"
                                     }`}
                             >
-                                {todo.completed && (
+                                {todo.isCompleted && (
                                     <svg
                                         className="w-3 h-3 text-white"
                                         fill="currentColor"

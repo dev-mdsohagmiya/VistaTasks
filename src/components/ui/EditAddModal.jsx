@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form"
 import { Calendar, X } from "lucide-react";
 import { TodoContext } from "../../contexts";
 import { useContext } from "react";
+import { alertMessage } from "../../utils/alertMessage";
+import { toast } from "react-toastify";
 
 export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
-    const { state } = useContext(TodoContext);
+    const { state, dispatch } = useContext(TodoContext);
     const editData = state?.todos.filter((item) => item.id === state.delete)[0]
     console.log("edit DAta", editData)
 
@@ -24,8 +26,29 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
 
     console.log(errors)
     const onSubmit = (data) => {
-        handleAddTask(data)
-        setShowAddModal(false)
+        try {
+            if (editData) {
+                dispatch({
+                    type: "UPDATE_TASK", payload: {
+                        data: {
+                            ...data, id: editData?.id, isCompleted: editData?.isCompleted
+                        },
+                        dispatch: dispatch
+                    }
+                })
+                alertMessage(toast, "Task Edit Successfull")
+            }
+
+            else {
+                handleAddTask(data)
+
+            }
+
+            setShowAddModal(false)
+
+        } catch (error) {
+
+        }
     }
 
     return <>
