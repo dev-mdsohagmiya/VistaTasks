@@ -16,7 +16,7 @@ export const Home = () => {
   }, [])
 
   return (
-    <TodoContext.Provider value={{ state, dispatch }}>
+    <TodoContext.Provider data-theme="dark" value={{ state, dispatch }}>
       <Todo />
 
       <ToastContainer

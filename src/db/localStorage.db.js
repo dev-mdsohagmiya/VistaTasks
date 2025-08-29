@@ -4,7 +4,6 @@ export const addTodoLocalStorage = (data) => {
 }
 
 
-
 export const getTodoLocalStorage = (data) => {
     const getTodo = localStorage.getItem("todo")
     return JSON.parse(getTodo)

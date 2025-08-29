@@ -3,7 +3,11 @@ import { Home } from "./pages/home"
 
 function App() {
 
-  return (<Home />)
+  return (
+    <div data-theme="light">
+      <Home />
+    </div>
+  )
 }
 
 export default App

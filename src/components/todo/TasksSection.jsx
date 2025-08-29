@@ -4,6 +4,7 @@ import { TasksHeader } from "./TasksSectionHeader";
 import { NoTasksFound } from "../ui/NoTasksFound";
 import { TodoContext } from "../../contexts";
 import { motion, AnimatePresence } from "framer-motion";
+import { insertTodoModel } from "../../services/firebase";
 
 export const TasksSection = ({
   mockTodos,
@@ -13,6 +14,10 @@ export const TasksSection = ({
   handleTaskCompletation,
 }) => {
   const { state, dispatch } = useContext(TodoContext);
+
+  insertTodoModel(state)
+
+  // data shorting
   const currentTodos = useMemo(() => {
     let currentTodos = [...state?.todos];
     if (state?.searchParams) {
@@ -60,19 +65,19 @@ export const TasksSection = ({
             state?.searchParams
               ? "No tasks found for your search"
               : state?.stats?.toLowerCase() === "completed"
-              ? "No completed tasks yet"
-              : state?.stats?.toLowerCase() === "active"
-              ? "No active tasks yet"
-              : "No tasks found"
+                ? "No completed tasks yet"
+                : state?.stats?.toLowerCase() === "active"
+                  ? "No active tasks yet"
+                  : "No tasks found"
           }
           description={
             state?.searchParams
               ? "Try adjusting your search terms or create a new task"
               : state?.stats?.toLowerCase() === "completed"
-              ? "Complete some tasks to see them here"
-              : state?.stats?.toLowerCase() === "active"
-              ? "All your tasks are completed! Great job!"
-              : "Get started by creating your first task"
+                ? "Complete some tasks to see them here"
+                : state?.stats?.toLowerCase() === "active"
+                  ? "All your tasks are completed! Great job!"
+                  : "Get started by creating your first task"
           }
           showAddButton={!state?.searchParams}
         />
