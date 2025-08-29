@@ -40,7 +40,7 @@ export const StatsCard = ({ stats }) => {
 
   return (
     <motion.div
-      className="bg-white shadow-[0_4px_8px_rgba(0,0,0,0.25)] dark:bg-gray-900 rounded-[10px] border border-gray-200 dark:border-gray-800 py-3 mb-5"
+      className="bg-white shadow-[0_4px_8px_rgba(0,0,0,0.0.5)] dark:bg-gray-900 rounded-[10px] border border-gray-200 dark:border-gray-800 py-3 mb-5"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
