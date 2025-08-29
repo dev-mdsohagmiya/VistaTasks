@@ -11,7 +11,6 @@ import { todoModel } from "../../models/todoModel";
 import { v4 as uuidv4 } from "uuid";
 import { DeleteConfirmModal } from "../ui/DeleteConfirmModal";
 import { formatDate } from "../../utils/formatDate";
-import { insertTodoModel } from "../../services/firebase";
 
 const Todo = () => {
   const { state, dispatch } = useContext(TodoContext);
@@ -32,8 +31,6 @@ const Todo = () => {
   };
 
   const handleAddTask = (data) => {
-    console.log("data___________________", data);
-    insertTodoModel(state)
     dispatch({
       type: "ADD_TASK",
       payload: todoModel({

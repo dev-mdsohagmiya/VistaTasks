@@ -10,3 +10,12 @@ export const getTodoLocalStorage = (data) => {
 }
 
 
+export const addUserLocalStorage = (user) => {
+    localStorage.setItem("user", JSON.stringify(user))
+
+}
+
+export const getUserLocalStorage = (user) => {
+    const getUser = localStorage.getItem("user")
+    return JSON.parse(getUser)
+}

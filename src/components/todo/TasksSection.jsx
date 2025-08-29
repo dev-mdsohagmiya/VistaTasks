@@ -4,7 +4,6 @@ import { TasksHeader } from "./TasksSectionHeader";
 import { NoTasksFound } from "../ui/NoTasksFound";
 import { TodoContext } from "../../contexts";
 import { motion, AnimatePresence } from "framer-motion";
-import { insertTodoModel } from "../../services/firebase";
 
 export const TasksSection = ({
   mockTodos,
@@ -15,7 +14,7 @@ export const TasksSection = ({
 }) => {
   const { state, dispatch } = useContext(TodoContext);
 
-  insertTodoModel(state)
+
 
   // data shorting
   const currentTodos = useMemo(() => {

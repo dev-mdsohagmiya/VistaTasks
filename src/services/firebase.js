@@ -6,6 +6,7 @@ import {
     signInWithPopup
 } from "firebase/auth";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { getUserLocalStorage } from "../db/localStorage.db";
 
 
 // Your web app's Firebase configuration
@@ -39,53 +40,13 @@ const signInWithGoogle = async () => {
 }
 
 
+const addTodoToFirefire = async (data) => {
+    // Add a new document in collection "cities"
+    const user = getUserLocalStorage()
+    const res = await setDoc(doc(db, "todo", "LA"), data);
+    console.log("data insert res", res)
 
-
-
-// Method to insert todo data for the logged-in user
-const insertTodoModel = async (data) => {
-    if (!auth.currentUser) {
-        throw new Error("User must be logged in to insert data");
-    }
-
-    try {
-        const userTodoRef = collection(db, `users/${auth.currentUser.uid}/todoLists`);
-        const docRef = await addDoc(userTodoRef, {
-            ...data,
-            userId: auth.currentUser.uid,
-            createdAt: new Date().toISOString()
-        });
-        console.log("Document written with ID: ", docRef.id);
-        return docRef.id;
-    } catch (error) {
-        console.error("Error adding document: ", error);
-        throw error;
-    }
-};
-
-// Method to get all todo data for the logged-in user
-const getTodoModel = async () => {
-    if (!auth.currentUser) {
-        throw new Error("User must be logged in to retrieve data");
-    }
-
-    try {
-        const userTodoRef = collection(db, `users/${auth.currentUser.uid}/todoLists`);
-        const querySnapshot = await getDocs(userTodoRef);
-        const todos = [];
-        querySnapshot.forEach((doc) => {
-            todos.push({
-                id: doc.id, // Include document ID
-                ...doc.data() // Spread the document data
-            });
-        });
-        console.log("Retrieved todos:", todos);
-        return todos;
-    } catch (error) {
-        console.error("Error retrieving documents: ", error);
-        throw error;
-    }
-};
+}
 
 
 
@@ -95,6 +56,4 @@ const getTodoModel = async () => {
 
 
 
-
-
-export { auth, signInWithGoogle, getTodoModel, insertTodoModel };
+export { auth, signInWithGoogle, db };
