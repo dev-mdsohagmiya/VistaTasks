@@ -50,14 +50,14 @@ export const StatsCard = ({ stats }) => {
         transition: { duration: 0.2 },
       }}
     >
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-8 text-sm sm:text-[16px] font-semibold text-gray-900 dark:text-gray-100">
+      <div className="grid grid-cols-1 sm:grid-cols-3 p-4 gap-[2px] md:gap-2 sm:gap-8 text-sm sm:text-[16px] font-semibold text-gray-900 dark:text-gray-100">
         <motion.div
           className="sm:text-center"
           variants={itemVariants}
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="mb-1">
+          <div className="md:mb-1">
             <span className="mr-1 text-gray-600 dark:text-gray-400">All:</span>
             <motion.span
               className="text-blue-600 dark:text-blue-400"
@@ -73,7 +73,7 @@ export const StatsCard = ({ stats }) => {
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="mb-1">
+          <div className="md:mb-1">
             <span className="mr-1 text-gray-600 dark:text-gray-400">
               Active:
             </span>
@@ -91,7 +91,7 @@ export const StatsCard = ({ stats }) => {
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="mb-1">
+          <div className="md:mb-1">
             <span className="mr-1 text-gray-600 dark:text-gray-400">
               Completed:
             </span>
