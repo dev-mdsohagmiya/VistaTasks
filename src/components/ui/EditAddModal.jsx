@@ -151,11 +151,25 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
                   Title
                 </label>
                 <input
-                  {...register("title", { required: true })}
+                  {...register("title", { required: "Title is required" })}
                   type="text"
                   placeholder="Add a task title"
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    errors.title
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 dark:border-gray-700"
+                  }`}
                 />
+                {errors.title && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-red-500 text-sm mt-1 flex items-center gap-1"
+                  >
+                    <span className="w-1 h-1 bg-red-500 rounded-full"></span>
+                    {errors.title.message}
+                  </motion.p>
+                )}
               </motion.div>
 
               <motion.div
@@ -167,11 +181,27 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
                   Description
                 </label>
                 <textarea
-                  {...register("description", { required: true })}
+                  {...register("description", {
+                    required: "Description is required",
+                  })}
                   placeholder="Add a task description"
                   rows="3"
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                  className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${
+                    errors.description
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 dark:border-gray-700"
+                  }`}
                 />
+                {errors.description && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-red-500 text-sm mt-1 flex items-center gap-1"
+                  >
+                    <span className="w-1 h-1 bg-red-500 rounded-full"></span>
+                    {errors.description.message}
+                  </motion.p>
+                )}
               </motion.div>
 
               <motion.div
@@ -184,12 +214,26 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
                 </label>
                 <div className="relative">
                   <input
-                    {...register("time", { required: true })}
+                    {...register("time", { required: "Date is required" })}
                     type="date"
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 cursor-pointer"
+                    className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border transition-all duration-200 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer ${
+                      errors.time
+                        ? "border-red-500 focus:ring-red-500"
+                        : "border-gray-200 dark:border-gray-700"
+                    }`}
                     onClick={(e) => e.target.showPicker?.()}
                   />
                 </div>
+                {errors.time && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-red-500 text-sm mt-1 flex items-center gap-1"
+                  >
+                    <span className="w-1 h-1 bg-red-500 rounded-full"></span>
+                    {errors.time.message}
+                  </motion.p>
+                )}
               </motion.div>
 
               <motion.div
