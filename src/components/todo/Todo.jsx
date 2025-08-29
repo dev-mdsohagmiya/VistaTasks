@@ -5,7 +5,7 @@ import { SearchAndFilterSection } from "./SearchAndFilterSection";
 import { EditAddModal } from "../ui/EditAddModal";
 import { TasksSection } from "./TasksSection";
 import { TodoContext } from "../../contexts";
-import { alertMessage } from "../../utils/alertMessage";
+import { showSuccessToast, showErrorToast } from "../../utils/alertMessage";
 import { toast } from "react-toastify";
 import { todoModel } from "../../models/todoModel";
 import { v4 as uuidv4 } from "uuid";
@@ -40,12 +40,20 @@ const Todo = () => {
         title: data.title,
       }),
     });
-    alertMessage(toast, "data added success");
+    showSuccessToast(toast, "data added success");
   };
 
   const handleDeleteTask = (id) => {
-    window.alert(id);
-    dispatch({ type: "DELETE_TASK", payload: id });
+    try {
+      dispatch({ type: "DELETE_TASK", payload: id });
+      showSuccessToast(toast, "Task deleted successfully! 🗑️");
+      // Reset delete modal state
+      setShowDeleteModal(false);
+      setDeleteTaskId(null);
+      setDeleteTaskTitle("");
+    } catch {
+      showErrorToast(toast, "Failed to delete task. Please try again.");
+    }
   };
 
   const handleUpdateTask = (id) => {

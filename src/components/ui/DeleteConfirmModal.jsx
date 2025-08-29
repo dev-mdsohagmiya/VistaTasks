@@ -51,13 +51,36 @@ export const DeleteConfirmModal = ({
     },
   };
 
+  // Handle backdrop click
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  // Handle close button click
+  const handleCloseClick = () => {
+    onClose();
+  };
+
+  // Handle cancel button click
+  const handleCancelClick = () => {
+    onClose();
+  };
+
+  // Handle confirm button click
+  const handleConfirmClick = () => {
+    onConfirm();
+    onClose(); // Close modal after confirmation
+  };
+
   if (!isOpen) return null;
 
   return (
     <AnimatePresence mode="wait">
       <motion.div
         className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-        onClick={onClose}
+        onClick={handleBackdropClick}
         variants={backdropVariants}
         initial="hidden"
         animate="visible"
@@ -92,11 +115,12 @@ export const DeleteConfirmModal = ({
               </div>
             </div>
             <motion.button
-              onClick={onClose}
+              onClick={handleCloseClick}
               className="p-1 text-gray-400 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-200 rounded-lg transition-colors"
               whileHover={{ scale: 1.1, rotate: 90 }}
               whileTap={{ scale: 0.9 }}
               transition={{ duration: 0.2 }}
+              type="button"
             >
               <X className="w-5 h-5" />
             </motion.button>
@@ -127,18 +151,20 @@ export const DeleteConfirmModal = ({
             transition={{ delay: 0.3, duration: 0.3 }}
           >
             <motion.button
-              onClick={onClose}
+              onClick={handleCancelClick}
               className="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-medium py-3 px-4 rounded-lg transition-colors duration-200"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              type="button"
             >
               Cancel
             </motion.button>
             <motion.button
-              onClick={onConfirm}
+              onClick={handleConfirmClick}
               className="flex-1 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              type="button"
             >
               Delete Task
             </motion.button>
