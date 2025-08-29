@@ -88,27 +88,16 @@ export const TaskCard = ({
         animate="visible"
         exit="exit"
         whileHover="hover"
-        whileTap="tap"
-        className="bg-white dark:bg-gray-900 rounded-[10px] border border-gray-200 dark:border-gray-800 p-3 sm:p-4 md:p-6 shadow-[0_4px_8px_rgba(0,0,0,0.05)] cursor-pointer"
+        className="bg-white dark:bg-gray-900 rounded-[10px] border border-gray-200 dark:border-gray-800 p-3 sm:p-4 md:p-6 shadow-[0_4px_8px_rgba(0,0,0,0.05)]"
       >
         {/* Mobile Layout */}
         <div className="block sm:hidden">
           <div className="flex items-start gap-3 mb-3">
             <motion.button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log(
-                  "Mobile checkbox clicked for task:",
-                  todo.id,
-                  "Current state:",
-                  todo.isCompleted
-                );
-                handleTaskCompletation(todo.id);
-              }}
+              onClick={() => handleTaskCompletation(todo.id)}
               variants={checkboxVariants}
               animate={todo.isCompleted ? "checked" : "unchecked"}
-              className={`mt-1 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors flex-shrink-0 cursor-pointer ${
+              className={`mt-1 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors cursor-pointer flex-shrink-0 ${
                 todo.isCompleted
                   ? "bg-green-500 border-green-500"
                   : "border-gray-300 hover:border-green-500"
@@ -139,7 +128,7 @@ export const TaskCard = ({
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
                 className={`font-semibold text-base inline-block mb-2 ${
-                  todo.isCompleted
+                  todo.completed
                     ? "text-gray-500 line-through"
                     : "text-gray-900 dark:text-gray-100"
                 }`}
@@ -154,7 +143,7 @@ export const TaskCard = ({
               >
                 <p
                   className={`text-xs mb-3 leading-relaxed ${
-                    todo.isCompleted
+                    todo.completed
                       ? "text-gray-400"
                       : "text-gray-600 dark:text-gray-300"
                   }`}
@@ -182,7 +171,7 @@ export const TaskCard = ({
 
           {/* Mobile Action Buttons */}
           <div className="flex items-center justify-end gap-2">
-            {!todo.isCompleted && (
+            {!todo.completed && (
               <motion.button
                 onClick={() => {
                   setShowAddModal(true);
@@ -216,15 +205,7 @@ export const TaskCard = ({
             <div className="flex gap-2 w-full">
               <div>
                 <motion.button
-                  onClick={() => {
-                    console.log(
-                      "Desktop checkbox clicked for task:",
-                      todo.id,
-                      "Current state:",
-                      todo.isCompleted
-                    );
-                    handleTaskCompletation(todo.id);
-                  }}
+                  onClick={() => handleTaskCompletation(todo.id)}
                   variants={checkboxVariants}
                   animate={todo.isCompleted ? "checked" : "unchecked"}
                   className={`mt-1 w-5 h-5 sm:w-5 sm:h-5 rounded border-2 flex items-center justify-center transition-colors cursor-pointer ${
@@ -259,7 +240,7 @@ export const TaskCard = ({
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: 0.1 }}
                   className={`font-semibold text-base sm:text-lg inline-block mb-1 sm:mb-2 ${
-                    todo.isCompleted
+                    todo.completed
                       ? "text-gray-500 line-through"
                       : "text-gray-900 dark:text-gray-100"
                   }`}
@@ -275,7 +256,7 @@ export const TaskCard = ({
             >
               <p
                 className={`text-[12px] sm:text-[12px] mb-3 sm:mb-4 leading-relaxed  ${
-                  todo.isCompleted
+                  todo.completed
                     ? "text-gray-400"
                     : "text-gray-600 dark:text-gray-300"
                 }`}
@@ -301,7 +282,7 @@ export const TaskCard = ({
                 {todo.time}
               </motion.div>
               <div className="flex items-center gap-2 ml-2 sm:ml-4">
-                {!todo.isCompleted && (
+                {!todo.completed && (
                   <motion.button
                     onClick={() => {
                       setShowAddModal(true);
