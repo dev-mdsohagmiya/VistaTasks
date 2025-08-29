@@ -1,9 +1,16 @@
 import { Search, X } from "lucide-react";
 import { TodoContext } from "../../contexts";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
-export const SearchAndFilterSection = ({ setSearchTerm, searchTerm, filter, handleTaskSorting }) => {
-    const { state, dispatch } = useContext(TodoContext);
+export const SearchAndFilterSection = ({ setSearchTerm, searchTerm, filter, handleTaskSorting, handleSearchTask }) => {
+    const { state } = useContext(TodoContext);
+
+    const [search, setSearchValue] = useState("")
+
+    const handleSearch = (value) => {
+        setSearchValue(value.replace(/\s+/g, ' '))
+        handleSearchTask(value.replace(/\s+/g, ' '))
+    }
 
     return <>
         <div className="bg-white dark:bg-gray-900 rounded-[10px]  shadow-[0_4px_8px_rgba(0,0,0,0.25)] border border-gray-200 dark:border-gray-800 p-6 mb-8">
@@ -22,13 +29,13 @@ export const SearchAndFilterSection = ({ setSearchTerm, searchTerm, filter, hand
                         <input
                             type="text"
                             placeholder="Search tasks..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
+                            value={search}
+                            onChange={(e) => handleSearch(e.target.value)}
                             className="w-full pl-10 pr-10 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500  focus:border-transparent placeholder:text-[12px]"
                         />
-                        {searchTerm && (
+                        {search && (
                             <button
-                                onClick={() => setSearchTerm("")}
+                                onClick={() => setSearchValue("")}
                                 className="absolute right-3 top-1/2 transform -translate-y-1/2"
                             >
                                 <X className="w-5 h-5 text-gray-400" />

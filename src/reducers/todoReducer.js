@@ -13,6 +13,7 @@
 const initialState = {
     delete: null,
     stats: "all",
+    searchParams: "",
     todos: []
 }
 
@@ -67,6 +68,9 @@ const todoReducer = (state, action) => {
             }
         case 'TASK_SHORTING':
             return { ...state, stats: action.payload }
+        case 'SEARCH_TASK':
+            return { ...state, searchParams: action.payload }
+
         default:
             return state;
     }

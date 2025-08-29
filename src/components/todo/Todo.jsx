@@ -47,6 +47,10 @@ const Todo = () => {
         dispatch({ type: "TASK_SHORTING", payload: stats })
 
     }
+    const handleSearchTask = (value) => {
+        dispatch({ type: "SEARCH_TASK", payload: value })
+
+    }
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-950">
             {/* Header */}
@@ -60,7 +64,7 @@ const Todo = () => {
             <div className="max-w-6xl mx-auto px-6 py-8">
                 <StatsCard stats={stats} />
                 {/* Search and Filter Bar */}
-                <SearchAndFilterSection handleTaskSorting={handleTaskSorting} setSearchTerm={setShowAddModal} searchTerm={searchTerm} filter={filter} setFilter={setFilter} />
+                <SearchAndFilterSection handleTaskSorting={handleTaskSorting} setSearchTerm={setShowAddModal} searchTerm={searchTerm} filter={filter} setFilter={setFilter} handleSearchTask={handleSearchTask} />
 
                 {/* Tasks Section Header */}
                 <TasksSection handleUpdateTask={handleUpdateTask} handleDeleteTask={handleDeleteTask} setShowAddModal={setShowAddModal} mockTodos={""} handleTaskCompletation={handleTaskCompletation} />

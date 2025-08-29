@@ -6,9 +6,15 @@ import { TodoContext } from "../../contexts";
 export const TasksSection = ({ mockTodos, setShowAddModal, handleDeleteTask, handleUpdateTask, handleTaskCompletation }) => {
     const { state, dispatch } = useContext(TodoContext);
     const currentTodos = useMemo(() => {
-        if (state.stats.toLowerCase() === "all") return state.todos
-        if (state.stats.toLowerCase() === "completed") return state.todos.filter((item) => item.isCompleted === true)
-        if (state.stats.toLowerCase() === "active") return state.todos.filter((item) => item.isCompleted !== true)
+        let currentTodos = [...state?.todos]
+        if (state?.searchParams) {
+            const searchedData = state.todos.filter((item) => item.title.toLowerCase().includes(state?.searchParams.toLowerCase()) || item.description.toLowerCase().includes(state?.searchParams.toLowerCase()))
+            currentTodos = searchedData
+        }
+
+        if (state.stats.toLowerCase() === "all") return currentTodos
+        if (state.stats.toLowerCase() === "completed") return currentTodos.filter((item) => item.isCompleted === true)
+        if (state.stats.toLowerCase() === "active") return currentTodos.filter((item) => item.isCompleted !== true)
 
     }, [state])
 
