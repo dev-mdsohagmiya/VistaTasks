@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Trash2, X } from "lucide-react";
+import { useKeyboardShortcuts } from "../../utils/keyboardShortcuts";
 
 export const DeleteConfirmModal = ({
   isOpen,
@@ -73,6 +74,14 @@ export const DeleteConfirmModal = ({
     onConfirm();
     onClose(); // Close modal after confirmation
   };
+
+  // Keyboard shortcuts for Enter (confirm) and Escape (cancel)
+  useKeyboardShortcuts({
+    onEnter: handleConfirmClick,
+    onEscape: onClose,
+    enabled: isOpen,
+    dependencies: [handleConfirmClick, onClose, isOpen],
+  });
 
   if (!isOpen) return null;
 

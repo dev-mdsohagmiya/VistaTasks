@@ -7,7 +7,8 @@ import { showSuccessToast, showErrorToast } from "../../utils/alertMessage";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { Calendar, X } from "lucide-react";
-import { db } from "../../services/firebase";
+import { formatDate } from "../../utils/formatDate";
+import { useKeyboardShortcuts } from "../../utils/keyboardShortcuts";
 
 export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
   const { state, dispatch } = useContext(TodoContext);
@@ -23,7 +24,7 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
     defaultValues: {
       title: editData?.title ? editData.title : "",
       description: editData?.description ? editData.description : "",
-      time: editData?.time ? editData.time : "",
+      time: editData?.date ? editData.date : "",
     },
   });
 
@@ -31,7 +32,6 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
   const onSubmit = async (data) => {
     try {
       if (editData) {
-
         dispatch({
           type: "UPDATE_TASK",
           payload: {
@@ -39,6 +39,7 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
               ...data,
               id: editData?.id,
               isCompleted: editData?.isCompleted,
+              time: formatDate(data?.time),
             },
             dispatch: dispatch,
           },
@@ -54,6 +55,14 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
       showErrorToast(toast, "An error occurred. Please try again.");
     }
   };
+
+  // Keyboard shortcuts for Enter (submit) and Escape (cancel)
+  useKeyboardShortcuts({
+    onEnter: () => handleSubmit(onSubmit)(),
+    onEscape: () => setShowAddModal(false),
+    enabled: true,
+    dependencies: [handleSubmit, onSubmit, setShowAddModal],
+  });
 
   const modalVariants = {
     hidden: {
@@ -156,10 +165,17 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
                   {...register("title", { required: "Title is required" })}
                   type="text"
                   placeholder="Add a task title"
-                  className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.title
-                    ? "border-red-500 focus:ring-red-500"
-                    : "border-gray-200 dark:border-gray-700"
-                    }`}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      handleSubmit(onSubmit)();
+                    }
+                  }}
+                  className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    errors.title
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 dark:border-gray-700"
+                  }`}
                 />
                 {errors.title && (
                   <motion.p
@@ -187,10 +203,17 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
                   })}
                   placeholder="Add a task description"
                   rows="3"
-                  className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${errors.description
-                    ? "border-red-500 focus:ring-red-500"
-                    : "border-gray-200 dark:border-gray-700"
-                    }`}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSubmit(onSubmit)();
+                    }
+                  }}
+                  className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${
+                    errors.description
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 dark:border-gray-700"
+                  }`}
                 />
                 {errors.description && (
                   <motion.p
@@ -216,10 +239,11 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
                   <input
                     {...register("time", { required: "Date is required" })}
                     type="date"
-                    className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border transition-all duration-200 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer ${errors.time
-                      ? "border-red-500 focus:ring-red-500"
-                      : "border-gray-200 dark:border-gray-700"
-                      }`}
+                    className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border transition-all duration-200 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer ${
+                      errors.time
+                        ? "border-red-500 focus:ring-red-500"
+                        : "border-gray-200 dark:border-gray-700"
+                    }`}
                     onClick={(e) => e.target.showPicker?.()}
                   />
                 </div>

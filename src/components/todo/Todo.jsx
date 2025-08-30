@@ -42,6 +42,7 @@ const Todo = () => {
         isCompleted: false,
         time: formatDate(data?.time),
         title: data.title,
+        date: data.time
       }),
     });
     showSuccessToast(toast, "data added success");

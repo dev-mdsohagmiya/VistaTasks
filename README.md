@@ -16,6 +16,7 @@ VistaTasks is a feature-rich, modern task management application built with Reac
    - [🌙 Theme System](#-theme-system)
    - [💾 Local Storage Integration](#-local-storage-integration)
    - [🔥 Firebase & Google Authentication](#-firebase--google-authentication)
+   - [⌨️ Keyboard Shortcuts & Accessibility](#️-keyboard-shortcuts--accessibility)
 5. [📁 Project Structure](#-project-structure)
 6. [🔧 Technology Stack](#-technology-stack)
 
@@ -95,6 +96,10 @@ VITE_FIREBASE_MESSAGING_APP_ID=your_app_id
 - ✅ **Delete Tasks**: Remove completed or unnecessary tasks
 - ✅ **Mark Complete**: Toggle task completion status
 - ✅ **Task Categories**: Organize tasks by status (All, Active, Completed)
+- ⌨️ **Keyboard Shortcuts**:
+  - **Enter**: Submit forms, confirm actions
+  - **Escape**: Cancel modals, clear search
+  - **Shift+Enter**: New line in description (textarea)
 
 ### **Data & Sync**
 
@@ -141,6 +146,15 @@ Beyond the core functionality, VistaTasks includes advanced features that enhanc
 - Real-time data synchronization across devices
 - Secure cloud storage for user data
 
+### **⌨️ Keyboard Shortcuts & Accessibility**
+
+**Enhanced User Experience with Keyboard Navigation**:
+
+- **Enter Key**: Submit forms, confirm actions, and add tasks
+- **Escape Key**: Cancel modals, hide dropdowns, and clear search
+- **Shift+Enter**: Create new lines in task descriptions
+- **Global Keyboard Support**: Works across all modals and forms
+
 ---
 
 ## 📁 **Project Structure**
@@ -186,7 +200,8 @@ vista-tasks/
 │   └── utils/             # Utility functions
 │       ├── alertMessage.js
 │       ├── formatDate.js
-│       └── textTruncate.js
+│       ├── textTruncate.js
+│       └── keyboardShortcuts.js
 ├── .env                    # Environment variables
 ├── package.json            # Dependencies
 ├── vite.config.js          # Vite configuration
