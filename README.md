@@ -37,7 +37,7 @@ _Click the image to watch the demo video_
 
 - Node.js (v16 or higher)
 - npm or yarn
-- Firebase account
+- Firebase account (You can skip this step because I have kept the .env file for a quick run.)
 
 ### **Quick Setup**
 
