@@ -54,7 +54,7 @@ _Click the image to watch the demo video_
    npm install
    ```
 
-3. **Configure Firebase**
+3. **Configure Firebase (You can skip this step because I have kept the .env file for a quick run.)**
 
    - Create a Firebase project
    - Add your Firebase configuration to `.env` file
@@ -71,7 +71,7 @@ _Click the image to watch the demo video_
    - Sign in with Google
    - Start managing your tasks!
 
-### **Environment Variables**
+### **Environment Variables (You can also skip this step because I have kept the .env file for a quick run.)**
 
 Create a `.env` file in the root directory:
 
