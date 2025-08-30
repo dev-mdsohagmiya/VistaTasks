@@ -102,11 +102,10 @@ export const TaskCard = ({
                 onClick={() => handleTaskCompletation(todo.id)}
                 variants={checkboxVariants}
                 animate={todo.isCompleted ? "checked" : "unchecked"}
-                className={`mt-1 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors cursor-pointer flex-shrink-0 ${
-                  todo.isCompleted
+                className={`mt-1 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors cursor-pointer flex-shrink-0 ${todo.isCompleted
                     ? "bg-green-500 border-green-500"
                     : "border-gray-300 hover:border-green-500"
-                }`}
+                  }`}
                 type="button"
               >
                 {todo.isCompleted && (
@@ -133,11 +132,10 @@ export const TaskCard = ({
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
-                className={`font-semibold text-base inline-block mb-2 ${
-                  todo.isCompleted
+                className={`font-semibold text-base inline-block mb-2 ${todo.isCompleted
                     ? "text-gray-500 line-through"
                     : "text-gray-900 dark:text-gray-100"
-                }`}
+                  }`}
               >
                 {todo.title}
               </motion.h3>
@@ -148,11 +146,10 @@ export const TaskCard = ({
                 transition={{ duration: 0.3, delay: 0.2 }}
               >
                 <p
-                  className={`text-xs mb-3 leading-relaxed ${
-                    todo.isCompleted
+                  className={`text-xs mb-3 leading-relaxed ${todo.isCompleted
                       ? "text-gray-400"
                       : "text-gray-600 dark:text-gray-300"
-                  }`}
+                    }`}
                 >
                   {mobileDescription.displayText}
                   {mobileDescription.shouldTruncate && (
@@ -218,11 +215,10 @@ export const TaskCard = ({
                     onClick={() => handleTaskCompletation(todo.id)}
                     variants={checkboxVariants}
                     animate={todo.isCompleted ? "checked" : "unchecked"}
-                    className={`mt-1 w-5 h-5 sm:w-5 sm:h-5 rounded border-2 flex items-center justify-center transition-colors cursor-pointer ${
-                      todo.isCompleted
+                    className={`mt-1 w-5 h-5 sm:w-5 sm:h-5 rounded border-2 flex items-center justify-center transition-colors cursor-pointer ${todo.isCompleted
                         ? "bg-green-500 border-green-500"
                         : "border-gray-300 hover:border-green-500"
-                    }`}
+                      }`}
                     type="button"
                   >
                     {todo.isCompleted && (
@@ -250,11 +246,10 @@ export const TaskCard = ({
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: 0.1 }}
-                  className={`font-semibold text-base sm:text-lg inline-block mb-1 sm:mb-2 ${
-                    todo.isCompleted
+                  className={`font-semibold text-base sm:text-lg inline-block mb-1 sm:mb-2 ${todo.isCompleted
                       ? "text-gray-500 line-through"
                       : "text-gray-900 dark:text-gray-100"
-                  }`}
+                    }`}
                 >
                   {todo.title}
                 </motion.h3>
@@ -266,11 +261,10 @@ export const TaskCard = ({
               transition={{ duration: 0.3, delay: 0.2 }}
             >
               <p
-                className={`text-[12px] sm:text-[12px] mb-3 sm:mb-4 leading-relaxed  ${
-                  todo.isCompleted
+                className={`text-[12px] sm:text-[12px] mb-3 sm:mb-4 leading-relaxed  ${todo.isCompleted
                     ? "text-gray-400"
                     : "text-gray-600 dark:text-gray-300"
-                }`}
+                  }`}
               >
                 {desktopDescription.displayText}
                 {desktopDescription.shouldTruncate && (

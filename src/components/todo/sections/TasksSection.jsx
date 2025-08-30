@@ -6,7 +6,6 @@ import { TodoContext } from "../../../contexts";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const TasksSection = ({
-  mockTodos,
   setShowAddModal,
   handleDeleteTask,
   handleUpdateTask,

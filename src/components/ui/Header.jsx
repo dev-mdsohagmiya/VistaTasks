@@ -8,22 +8,28 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useContext, useEffect, useRef } from "react";
 import { ThemeContext, TodoContext } from "../../contexts";
-import { addThemeLocalStorage, addUserLocalStorage, removeThemeLocalStorage } from "../../db/localStorage.db";
+import {
+  addThemeLocalStorage,
+  addUserLocalStorage,
+  removeThemeLocalStorage,
+} from "../../db/localStorage.db";
 import { signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 import { showSuccessToast } from "../../utils/alertMessage";
 import { clearDataLogout } from "../../utils/clearDataLogout";
 
-export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
-
+export const Header = ({ showUserMenu, setShowUserMenu }) => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
   const { state, dispatch } = useContext(TodoContext);
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const menuRef = useRef(null);
 
-  const completedLength = state.todos.filter((item) => item.isCompleted === true).length
-  const ActiveLength = state.todos.filter((item) => item.isCompleted === false).length
-
+  const completedLength = state.todos.filter(
+    (item) => item.isCompleted === true
+  ).length;
+  const ActiveLength = state.todos.filter(
+    (item) => item.isCompleted === false
+  ).length;
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -73,11 +79,10 @@ export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
   const handleThemeToggle = () => {
     if (darkMode) {
       setDarkMode(false);
-      removeThemeLocalStorage()
-
+      removeThemeLocalStorage();
     } else {
       setDarkMode(true);
-      addThemeLocalStorage()
+      addThemeLocalStorage();
     }
     setShowUserMenu(false); // Hide dropdown after theme toggle
   };
@@ -120,8 +125,8 @@ export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                All: {state?.todos?.length} • Active: {ActiveLength} • Completed:{" "}
-                {completedLength}
+                All: {state?.todos?.length} • Active: {ActiveLength} •
+                Completed: {completedLength}
               </motion.p>
             </div>
           </motion.div>

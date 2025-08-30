@@ -15,23 +15,14 @@ import { auth, getTodoFirebase } from "../../services/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const Todo = () => {
-  const { state, dispatch } = useContext(TodoContext);
-  const [user, loading, error] = useAuthState(auth);
+  const { dispatch } = useContext(TodoContext);
+  const [user] = useAuthState(auth);
 
   const [showAddModal, setShowAddModal] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const [filter, setFilter] = useState("All");
-  const [searchTerm, setSearchTerm] = useState("");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteTaskId, setDeleteTaskId] = useState(null);
   const [deleteTaskTitle, setDeleteTaskTitle] = useState("");
-
-  // Mock data matching the design
-  const stats = {
-    all: 5,
-    active: 3,
-    completed: 2,
-  };
 
   const handleAddTask = (data) => {
     dispatch({
@@ -42,7 +33,7 @@ const Todo = () => {
         isCompleted: false,
         time: formatDate(data?.time),
         title: data.title,
-        date: data.time
+        date: data.time,
       }),
     });
     showSuccessToast(toast, "data added success");
@@ -85,44 +76,29 @@ const Todo = () => {
     setShowDeleteModal(true);
   };
 
-
-
-
-
-
   // fetch data
 
   useEffect(() => {
-
     const main = () => {
       if (user) {
-        getTodoFirebase({ dispatch })
-        console.log("user found")
+        getTodoFirebase({ dispatch });
+        console.log("user found");
       }
-    }
-    main()
-
-  }, [user, loading, error])
+    };
+    main();
+  }, [user]);
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-950">
       {/* Header */}
-      <Header
-        stats={stats}
-        showUserMenu={showUserMenu}
-        setShowUserMenu={setShowUserMenu}
-      />
+      <Header showUserMenu={showUserMenu} setShowUserMenu={setShowUserMenu} />
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-6 py-8">
-        <StatsCard stats={stats} />
+        <StatsCard />
         {/* Search and Filter Bar */}
         <SearchAndFilterSection
           handleTaskSorting={handleTaskSorting}
-          setSearchTerm={setShowAddModal}
-          searchTerm={searchTerm}
-          filter={filter}
-          setFilter={setFilter}
           handleSearchTask={handleSearchTask}
         />
 
@@ -131,7 +107,6 @@ const Todo = () => {
           handleUpdateTask={handleUpdateTask}
           handleDeleteTask={openDeleteModal}
           setShowAddModal={setShowAddModal}
-          mockTodos={""}
           handleTaskCompletation={handleTaskCompletation}
         />
       </div>

@@ -3,9 +3,6 @@ import { TodoContext } from "../../../contexts";
 import { useContext, useState } from "react";
 
 export const SearchAndFilterSection = ({
-  setSearchTerm,
-  searchTerm,
-  filter,
   handleTaskSorting,
   handleSearchTask,
 }) => {

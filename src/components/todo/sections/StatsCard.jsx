@@ -2,13 +2,15 @@ import { motion } from "framer-motion";
 import { TodoContext } from "../../../contexts";
 import { useContext } from "react";
 
-export const StatsCard = ({ stats }) => {
+export const StatsCard = () => {
+  const { state } = useContext(TodoContext);
 
-  const { state, dispatch } = useContext(TodoContext);
-
-  const completedLength = state.todos.filter((item) => item.isCompleted === true).length
-  const ActiveLength = state.todos.filter((item) => item.isCompleted === false).length
-
+  const completedLength = state.todos.filter(
+    (item) => item.isCompleted === true
+  ).length;
+  const ActiveLength = state.todos.filter(
+    (item) => item.isCompleted === false
+  ).length;
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
