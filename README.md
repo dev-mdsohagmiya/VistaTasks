@@ -22,7 +22,7 @@ Assalamualaikum, dear reviewers, this is a task for the role of Front-End Develo
 
 ---
 
-## 🎥 **Overview Video (I am adding the video soon...)**
+## 🎥 **Overview Video**
 
 In this video, you can quickly and more clearly understand what I have done and how I have done it.
 
