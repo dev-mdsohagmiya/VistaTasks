@@ -1,6 +1,6 @@
 ![VistaTasks Logo](public/logo.png)
 
-# **VistaTasks** -VistaTasks – An Assignment from Vista Systech for Front-End Intern
+# **VistaTasks** - An Assignment from Vista Systech for Front-End Intern
 
 Assalamualaikum, dear reviewers, this is a task for the role of Front-End Developer Intern at Vista Systech. I just created a name for this assignment based on the company name, calling it VistaTask. As per the requirements, I have built it using React, JavaScript, useContext, and useReducer. Additionally, I have added some extra features for backup and better performance, such as LocalStorage, Firebase Authentication, and Firebase Storage, which are explained in detail below.
 
