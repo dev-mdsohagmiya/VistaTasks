@@ -11,10 +11,12 @@ import { todoModel } from "../../models/todoModel";
 import { v4 as uuidv4 } from "uuid";
 import { DeleteConfirmModal } from "../ui/DeleteConfirmModal";
 import { formatDate } from "../../utils/formatDate";
-import { getTodoFirebase } from "../../services/firebase";
+import { auth, getTodoFirebase } from "../../services/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Todo = () => {
   const { state, dispatch } = useContext(TodoContext);
+  const [user, loading, error] = useAuthState(auth);
 
   const [showAddModal, setShowAddModal] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -82,9 +84,25 @@ const Todo = () => {
     setShowDeleteModal(true);
   };
 
+
+
+
+
+
+  // fetch data
+
   useEffect(() => {
-    getTodoFirebase()
-  }, [])
+
+    const main = () => {
+      if (user) {
+        getTodoFirebase({ dispatch })
+        console.log("user found")
+      }
+    }
+    main()
+
+  }, [user, loading, error])
+
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-950">
       {/* Header */}

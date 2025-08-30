@@ -3,14 +3,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { auth, signInWithGoogle } from "../../services/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useContext, useEffect, useRef } from "react";
-import { ThemeContext } from "../../contexts";
+import { ThemeContext, TodoContext } from "../../contexts";
 import { addUserLocalStorage } from "../../db/localStorage.db";
 import { signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 import { showSuccessToast } from "../../utils/alertMessage";
+import { clearDataLogout } from "../../utils/clearDataLogout";
 
 export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
+  const { state, dispatch } = useContext(TodoContext);
   const [user, loading, error] = useAuthState(auth);
   const menuRef = useRef(null);
 
@@ -45,6 +47,7 @@ export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
         showSuccessToast(toast, "SignOut Successful");
         setShowUserMenu(false); // Hide dropdown after signout
         // navigate("/login");
+        clearDataLogout({ dispatch })
         console.log("Signed Out");
       })
       .catch((error) => {

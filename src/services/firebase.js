@@ -45,7 +45,7 @@ const addTodoToFirebase = async (data) => {
     const user = getUserLocalStorage()
 
     if (user) {
-        const res = await setDoc(doc(db, "todo", user.uid), { todos: data });
+        const res = await setDoc(doc(db, "todo", user?.uid), { todos: data });
         return res
     }
     else {
@@ -57,13 +57,21 @@ const addTodoToFirebase = async (data) => {
 
 }
 
-const getTodoFirebase = () => {
+const getTodoFirebase = ({ dispatch }) => {
     const user = getUserLocalStorage()
 
-    const docRef = doc(db, "todo", user.uid);
+    const docRef = doc(db, "todo", user?.uid);
     onSnapshot(docRef, (docSnap) => {
         if (docSnap.exists()) {
-            console.log("Real-time data:", docSnap.data());
+
+            if (docSnap.data()?.todos?.length) {
+                dispatch({ type: "UPDATE_TASK_FIREBASE", payload: docSnap.data()?.todos ? docSnap.data().todos : [] })
+                console.log("Real-time data:", docSnap.data().todos);
+            }
+
+            // dispatch
+
+
         } else {
             console.log("No such document!");
         }

@@ -100,7 +100,19 @@ const todoReducer = (state, action) => {
             else {
                 return state
             }
+        case 'UPDATE_TASK_FIREBASE':
 
+            console.log(action.payload)
+            if (action.payload?.length) {
+                const updateTaskFirebase = { ...state, todos: [...action.payload] }
+                console.log("from update task", updateTaskFirebase)
+                return updateTaskFirebase
+            }
+            // addTodoLocalStorage(updateTaskFirebase)
+            return state
+
+        case "CLEAR_TASK":
+            return { ...state, todos: [] }
         default:
             return state;
     }
