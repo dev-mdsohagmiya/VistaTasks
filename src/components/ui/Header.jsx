@@ -15,10 +15,15 @@ import { showSuccessToast } from "../../utils/alertMessage";
 import { clearDataLogout } from "../../utils/clearDataLogout";
 
 export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
+
   const { darkMode, setDarkMode } = useContext(ThemeContext);
   const { state, dispatch } = useContext(TodoContext);
   const [user, loading, error] = useAuthState(auth);
   const menuRef = useRef(null);
+
+  const completedLength = state.todos.filter((item) => item.isCompleted === true).length
+  const ActiveLength = state.todos.filter((item) => item.isCompleted === false).length
+
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -112,8 +117,8 @@ export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                All: {stats.all} • Active: {stats.active} • Completed:{" "}
-                {stats.completed}
+                All: {state?.todos?.length} • Active: {ActiveLength} • Completed:{" "}
+                {completedLength}
               </motion.p>
             </div>
           </motion.div>
