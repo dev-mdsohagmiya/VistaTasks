@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 import Todo from "../../components/todo/Todo";
 import { initialState, todoReducer } from "../../reducers/todoReducer";
 import { Bounce, ToastContainer } from "react-toastify";
@@ -14,19 +14,28 @@ export const Home = () => {
 
   // add todo geting from local storage and check for backup
   useEffect(() => {
-    dispatch({
-      type: "UPDATE_WITH_LOCAL_STORAGE_DATA",
-      payload: getTodoLocalStorage(),
-    });
-
-    // Check if user is logged in and has todos to backup
+    // Check if user is logged in before restoring todos
     const user = getUserLocalStorage();
+
     if (user) {
+      // Only restore todos if user is logged in
+      dispatch({
+        type: "UPDATE_WITH_LOCAL_STORAGE_DATA",
+        payload: getTodoLocalStorage(),
+      });
+
       console.log("Home: User found, checking for backup opportunities");
       // Add delay to ensure Firebase is ready
       setTimeout(() => {
         storeLocalDataForNewUser();
       }, 1000);
+    } else {
+      // If no user, clear todos state
+      dispatch({
+        type: "CLEAR_TASK",
+        payload: null,
+      });
+      console.log("Home: No user found, todos cleared");
     }
   }, []);
 
