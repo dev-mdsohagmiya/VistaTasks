@@ -1,5 +1,5 @@
 import { Search, X } from "lucide-react";
-import { TodoContext } from "../../contexts";
+import { TodoContext } from "../../../contexts";
 import { useContext, useState } from "react";
 
 export const SearchAndFilterSection = ({

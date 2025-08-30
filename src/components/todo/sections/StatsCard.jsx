@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { TodoContext } from "../../contexts";
+import { TodoContext } from "../../../contexts";
 import { useContext } from "react";
 
 export const StatsCard = ({ stats }) => {

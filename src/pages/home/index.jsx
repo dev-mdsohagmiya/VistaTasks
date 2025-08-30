@@ -40,9 +40,7 @@ export const Home = () => {
     if (user) {
       console.log("Home: User found, checking for backup opportunities");
       // Add delay to ensure Firebase is ready
-      setTimeout(() => {
-        storeLocalDataForNewUser();
-      }, 1000);
+      storeLocalDataForNewUser();
     } else {
       console.log("Home: No user found");
     }

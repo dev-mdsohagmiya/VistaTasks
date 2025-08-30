@@ -180,10 +180,13 @@ vista-tasks/
 ├── src/
 │   ├── components/        # React components
 │   │   ├── todo/          # Todo-specific components
-│   │   │   ├── TaskCard.jsx
+│   │   │   ├── Todo.jsx
+│   │   │   └── sections/  # Todo component sections
+│   │   │       ├── TaskCard.jsx
 │   │   │   ├── TasksSection.jsx
 │   │   │   ├── SearchAndFilterSection.jsx
-│   │   │   └── StatsCard.jsx
+│   │   │   ├── StatsCard.jsx
+│   │   │   └── TasksSectionHeader.jsx
 │   │   └── ui/            # Reusable UI components
 │   │       ├── Header.jsx
 │   │       ├── EditAddModal.jsx

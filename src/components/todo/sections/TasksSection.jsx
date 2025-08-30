@@ -1,8 +1,8 @@
 import { useContext, useMemo } from "react";
 import { TaskCard } from "./TaskCard";
 import { TasksHeader } from "./TasksSectionHeader";
-import { NoTasksFound } from "../ui/NoTasksFound";
-import { TodoContext } from "../../contexts";
+import { NoTasksFound } from "../../ui/NoTasksFound";
+import { TodoContext } from "../../../contexts";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const TasksSection = ({

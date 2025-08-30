@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Header } from "../ui/Header";
-import { StatsCard } from "./StatsCard";
-import { SearchAndFilterSection } from "./SearchAndFilterSection";
+import { StatsCard } from "./sections/StatsCard";
+import { SearchAndFilterSection } from "./sections/SearchAndFilterSection";
 import { EditAddModal } from "../ui/EditAddModal";
-import { TasksSection } from "./TasksSection";
+import { TasksSection } from "./sections/TasksSection";
 import { TodoContext } from "../../contexts";
 import { showSuccessToast, showErrorToast } from "../../utils/alertMessage";
 import { toast } from "react-toastify";
