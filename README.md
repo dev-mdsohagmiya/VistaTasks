@@ -1,14 +1,14 @@
 ![VistaTasks Logo](public/logo.png)
 
 # **VistaTasks** - An Assignment from Vista Systech for Front-End Intern
-
+_Scroll Down and checkout the overview video for quick understand,thanks_ <br>
 Assalamualaikum, dear reviewers, this is a task for the role of Front-End Developer Intern at Vista Systech. I just created a name for this assignment based on the company name, calling it VistaTask. As per the requirements, I have built it using React, JavaScript, useContext, and useReducer. Additionally, I have added some extra features for backup and better performance, such as LocalStorage, Firebase Authentication, and Firebase Storage, which are explained in detail below.
 
 ---
 
 ## 📑 **Table of Contents**
 
-1. [🎥 Overview Video](#-overview-video)
+1. [🎥 Overview Video](#-overview-video-i-am-adding-the-video-soon)
 2. [🚀 How to Run Locally](#-how-to-run-locally)
 3. [✨ Core Features](#-core-features)
 4. [🎯 Extra Features](#-extra-features)
@@ -16,7 +16,7 @@ Assalamualaikum, dear reviewers, this is a task for the role of Front-End Develo
    - [🌙 Theme System](#-theme-system)
    - [💾 Local Storage Integration](#-local-storage-integration)
    - [🔥 Firebase & Google Authentication](#-firebase--google-authentication)
-   - [⌨️ Keyboard Shortcuts & Accessibility](#️-keyboard-shortcuts--accessibility)
+   - [⌨️ Keyboard Shortcuts & Accessibility](#keyboard-shortcuts--accessibility)
 5. [📁 Project Structure](#-project-structure)
 6. [🔧 Technology Stack](#-technology-stack)
 
@@ -26,7 +26,7 @@ Assalamualaikum, dear reviewers, this is a task for the role of Front-End Develo
 
 In this video, you can quickly and more clearly understand what I have done and how I have done it.
 
-[![Watch the Video](./public/docs/youtube.jpg)]()
+[![Watch the Video](./public/docs/youtube.jpg)](https://youtu.be/fxisxMqLuiU)
 
 _Click the image to watch the video_
 
@@ -122,7 +122,7 @@ VITE_FIREBASE_MESSAGING_APP_ID=your_app_id
 1. [**Advanced Animations & UI**](#-advanced-animations--ui)
 2. [**Local Storage Integration**](#-local-storage-integration)
 3. [**Firebase & Google Authentication**](#-firebase--google-authentication)
-4. [**Keyboard Shortcuts & Accessibility**](#️-keyboard-shortcuts--accessibility)
+4. [**Keyboard Shortcuts & Accessibility**](#keyboard-shortcuts--accessibility)
 
 ### **🎭 Advanced Animations & UI**
 
