@@ -8,7 +8,7 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useContext, useEffect, useRef } from "react";
 import { ThemeContext, TodoContext } from "../../contexts";
-import { addUserLocalStorage } from "../../db/localStorage.db";
+import { addThemeLocalStorage, addUserLocalStorage, removeThemeLocalStorage } from "../../db/localStorage.db";
 import { signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 import { showSuccessToast } from "../../utils/alertMessage";
@@ -73,8 +73,11 @@ export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
   const handleThemeToggle = () => {
     if (darkMode) {
       setDarkMode(false);
+      removeThemeLocalStorage()
+
     } else {
       setDarkMode(true);
+      addThemeLocalStorage()
     }
     setShowUserMenu(false); // Hide dropdown after theme toggle
   };

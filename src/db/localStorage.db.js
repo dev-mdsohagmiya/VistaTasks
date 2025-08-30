@@ -15,7 +15,22 @@ export const addUserLocalStorage = (user) => {
 
 }
 
+
 export const getUserLocalStorage = (user) => {
     const getUser = localStorage.getItem("user")
     return JSON.parse(getUser)
+}
+
+
+export const addThemeLocalStorage = (text) => {
+    localStorage.setItem("theme", true)
+
+}
+
+export const getThemeLocalStorage = () => {
+    return localStorage.getItem("theme")
+}
+
+export const removeThemeLocalStorage = () => {
+    return localStorage.removeItem("theme")
 }
