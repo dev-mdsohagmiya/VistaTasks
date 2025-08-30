@@ -2,7 +2,8 @@
 
 # **VistaTasks** - Modern Task Management Todo App
 
-VistaTasks is a feature-rich, modern task management application built with React and Firebase. It provides an intuitive interface for managing your daily tasks with advanced features like real-time synchronization, dark mode support, and seamless data backup.
+Assalamualaikum, dear reviewers.
+This is a task for the role of Front-End Developer Intern at Vistasystech. I have completed it as per the requirements using React, JavaScript, useContext, and useReducer. Additionally, I have added some extra features for backup and better performance. I have also used LocalStorage, Firebase Authentication, and Firebase Storage. The details are explained below.
 
 ---
 
