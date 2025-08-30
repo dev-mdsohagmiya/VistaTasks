@@ -79,10 +79,32 @@ const todoReducer = (state, action) => {
         }
       });
 
-      return {
+      const completedData = {
         ...state,
         todos: updateComplete,
       };
+
+      // Update localStorage to persist the completed status
+      console.log(
+        "COMPLETE_TASK: About to update localStorage with:",
+        completedData
+      );
+      addTodoLocalStorage(completedData);
+
+      // Verify localStorage was updated
+      const verifyStorage = localStorage.getItem("todo");
+      console.log("COMPLETE_TASK: localStorage after update:", verifyStorage);
+
+      // Also update Firebase to keep it in sync
+      addTodoToFirebase(updateComplete)
+        .then((res) => {
+          console.log("Firebase updated for completed task:", res);
+        })
+        .catch((error) => {
+          console.error("Error updating Firebase for completed task:", error);
+        });
+
+      return completedData;
     }
     case "TASK_SHORTING":
       return { ...state, stats: action.payload };
@@ -110,14 +132,14 @@ const todoReducer = (state, action) => {
 
     case "CLEAR_TASK":
       return { ...state, todos: [] };
-    
+
     case "CLEAR_COMPLETED_TASKS": {
-      const activeTodos = state.todos.filter(todo => !todo.isCompleted);
+      const activeTodos = state.todos.filter((todo) => !todo.isCompleted);
       const clearCompletedData = { ...state, todos: activeTodos };
       addTodoLocalStorage(clearCompletedData);
       return clearCompletedData;
     }
-      
+
     default:
       return state;
   }
