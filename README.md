@@ -119,7 +119,10 @@ VITE_FIREBASE_MESSAGING_APP_ID=your_app_id
 
 ## 🎯 **Extra Features**
 
-Beyond the core functionality, VistaTasks includes advanced features that enhance user experience and demonstrate modern web development practices. These features showcase technical expertise in animations, state management, data persistence, and cloud integration.
+1. [**Advanced Animations & UI**](#-advanced-animations--ui)
+2. [**Local Storage Integration**](#-local-storage-integration)
+3. [**Firebase & Google Authentication**](#-firebase--google-authentication)
+4. [**Keyboard Shortcuts & Accessibility**](#️-keyboard-shortcuts--accessibility)
 
 ### **🎭 Advanced Animations & UI**
 
@@ -128,6 +131,8 @@ Beyond the core functionality, VistaTasks includes advanced features that enhanc
 ### **🌙 Theme System**
 
 **Dark Mode and Light Mode Implementation**: Complete dark/light theme switching with context-based state management
+![Step 1](./public//docs/dark.jpg)  
+![Step 1](./public//docs/light.jpg)
 
 ### **💾 Local Storage Integration**
 
@@ -144,7 +149,8 @@ Beyond the core functionality, VistaTasks includes advanced features that enhanc
 - Google authentication integration
 - Automatic backup of localStorage data to Firebase
 - Real-time data synchronization across devices
-- Secure cloud storage for user data
+- Secure cloud storage for user data.
+   ![Step 1](./public//docs/google.jpg)
 
 ### **⌨️ Keyboard Shortcuts & Accessibility**
 
