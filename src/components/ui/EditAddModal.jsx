@@ -172,8 +172,8 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
                     }
                   }}
                   className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.title
-                      ? "border-red-500 focus:ring-red-500"
-                      : "border-gray-200 dark:border-gray-700"
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 dark:border-gray-700"
                     }`}
                 />
                 {errors.title && (
@@ -209,8 +209,8 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
                     }
                   }}
                   className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border transition-all duration-200 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${errors.description
-                      ? "border-red-500 focus:ring-red-500"
-                      : "border-gray-200 dark:border-gray-700"
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-200 dark:border-gray-700"
                     }`}
                 />
                 {errors.description && (
@@ -238,8 +238,8 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
                     {...register("time", { required: "Date is required" })}
                     type="date"
                     className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg border transition-all duration-200 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer ${errors.time
-                        ? "border-red-500 focus:ring-red-500"
-                        : "border-gray-200 dark:border-gray-700"
+                      ? "border-red-500 focus:ring-red-500"
+                      : "border-gray-200 dark:border-gray-700"
                       }`}
                     onClick={(e) => e.target.showPicker?.()}
                   />
@@ -264,7 +264,7 @@ export const EditAddModal = ({ setShowAddModal, handleAddTask }) => {
               >
                 <motion.button
                   type="submit"
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200"
+                  className="flex-1 bg-[#15803D] hover:bg-green-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >

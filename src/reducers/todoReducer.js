@@ -21,7 +21,7 @@ const initialState = {
 // Define reducer function
 const todoReducer = (state, action) => {
   switch (action.type) {
-    case "ADD_TASK":
+    case "ADD_TASK": {
       const addTaskData = { ...state, todos: [action.payload, ...state.todos] };
       addTodoToFirebase([action.payload, ...state.todos]).then((user) => {
         console.log("from reducer", user);
@@ -29,8 +29,9 @@ const todoReducer = (state, action) => {
       // console.log("from reducer", user)
       addTodoLocalStorage(addTaskData);
       return addTaskData;
+    }
 
-    case "DELETE_TASK":
+    case "DELETE_TASK": {
       const filterData = state?.todos.filter(
         (item) => item.id !== action.payload
       );
@@ -40,7 +41,8 @@ const todoReducer = (state, action) => {
       });
       addTodoLocalStorage(updatedFilderedData);
       return updatedFilderedData;
-    case "UPDATE_TASK":
+    }
+    case "UPDATE_TASK": {
       const updated = state?.todos.map((item) => {
         if (item.id === action.payload?.data?.id) {
           return {
@@ -60,11 +62,12 @@ const todoReducer = (state, action) => {
         console.log("from reducer", res);
       });
       return { ...state, todos: updated };
+    }
     case "ADD_UPDATE_TASK_ID":
       return { ...state, delete: action.payload };
     case "REMOVE_UPDATE_TASK_ID":
       return { ...state, delete: null };
-    case "COMPLETE_TASK":
+    case "COMPLETE_TASK": {
       const updateComplete = state?.todos?.map((item) => {
         if (item?.id === action?.payload) {
           return {
@@ -80,6 +83,7 @@ const todoReducer = (state, action) => {
         ...state,
         todos: updateComplete,
       };
+    }
     case "TASK_SHORTING":
       return { ...state, stats: action.payload };
 
@@ -106,6 +110,14 @@ const todoReducer = (state, action) => {
 
     case "CLEAR_TASK":
       return { ...state, todos: [] };
+    
+    case "CLEAR_COMPLETED_TASKS": {
+      const activeTodos = state.todos.filter(todo => !todo.isCompleted);
+      const clearCompletedData = { ...state, todos: activeTodos };
+      addTodoLocalStorage(clearCompletedData);
+      return clearCompletedData;
+    }
+      
     default:
       return state;
   }

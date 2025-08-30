@@ -16,10 +16,9 @@ export const TasksSection = ({
 
   // Clear completed tasks function
   const handleClearCompleted = () => {
-    const activeTodos = state.todos.filter((todo) => !todo.isCompleted);
     dispatch({
-      type: "UPDATE_WITH_LOCAL_STORAGE_DATA",
-      payload: { ...state, todos: activeTodos },
+      type: "CLEAR_COMPLETED_TASKS",
+      payload: null,
     });
   };
 

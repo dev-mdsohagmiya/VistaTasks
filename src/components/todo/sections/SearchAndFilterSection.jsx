@@ -14,8 +14,10 @@ export const SearchAndFilterSection = ({
   const [search, setSearchValue] = useState("");
 
   const handleSearch = (value) => {
-    setSearchValue(value.replace(/\s+/g, " "));
-    handleSearchTask(value.replace(/\s+/g, " "));
+    if (value || value !== " ") {
+      setSearchValue(value.replace(/\s+/g, " "));
+      handleSearchTask(value.replace(/\s+/g, " "));
+    }
   };
 
   return (
