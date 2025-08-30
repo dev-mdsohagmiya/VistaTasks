@@ -220,7 +220,7 @@ vista-tasks/
 
 ### **Frontend Technologies**
 
-- **React 18**: Modern React with hooks and context
+- **React 19**: Modern React with hooks and usecontext and useReducer
 - **Vite**: Fast build tool and development server
 - **Tailwind CSS**: Utility-first CSS framework
 - **Framer Motion**: Animation library for React
