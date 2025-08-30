@@ -12,6 +12,10 @@ VistaTasks is a feature-rich, modern task management application built with Reac
 2. [🚀 How to Run Locally](#-how-to-run-locally)
 3. [✨ Core Features](#-core-features)
 4. [🎯 Extra Features](#-extra-features)
+   - [🎭 Advanced Animations & UI](#-advanced-animations--ui)
+   - [🌙 Theme System](#-theme-system)
+   - [💾 Local Storage Integration](#-local-storage-integration)
+   - [🔥 Firebase & Google Authentication](#-firebase--google-authentication)
 5. [📁 Project Structure](#-project-structure)
 6. [🔧 Technology Stack](#-technology-stack)
 
@@ -110,36 +114,42 @@ VITE_FIREBASE_MESSAGING_APP_ID=your_app_id
 
 ## 🎯 **Extra Features**
 
-### **Advanced Task Management**
+Beyond the core functionality, VistaTasks includes advanced features that enhance user experience and demonstrate modern web development practices. These features showcase technical expertise in animations, state management, data persistence, and cloud integration.
 
-- 🔍 **Smart Search**: Find tasks quickly with real-time search
-- 📊 **Task Statistics**: View counts for All, Active, and Completed tasks
-- 📅 **Date Management**: Set and track task due dates
-- 📝 **Rich Descriptions**: Add detailed descriptions to your tasks
-- 🏷️ **Task Organization**: Efficient task categorization and management
+### **🎭 Advanced Animations & UI**
 
-### **Enhanced User Experience**
+**Great animation with framer motion**: Smooth, professional animations throughout the app for enhanced user experience
 
-- 🎨 **Custom UI Components**: Beautiful, reusable component library
-- 🌙 **Dark/Light Mode**: Toggle between themes for better user experience
-- 🌈 **Theme System**: Comprehensive theme implementation with context
-- 📱 **Responsive Layouts**: Adaptive design for all device types
-- 🎭 **Framer Motion**: Smooth animations and transitions
-- 🎨 **Tailwind CSS**: Modern, utility-first styling framework
+### **🌙 Theme System**
 
-### **Performance & Reliability**
+**Dark Mode and Light Mode Implementation**: Complete dark/light theme switching with context-based state management
 
-- ⚡ **Optimized Rendering**: Efficient React component updates
-- 🔄 **State Management**: Robust state handling with useReducer
-- 📦 **Code Splitting**: Optimized bundle loading
-- 🚀 **Vite Build Tool**: Fast development and build times
-- 🧹 **Clean Code**: Well-structured, maintainable codebase
+### **💾 Local Storage Integration**
+
+**Local Storage for Todo List and Theme Persistence**:
+
+- Todo data persistence using localStorage
+- Theme preference saved locally
+- Offline-first approach for better user experience
+
+### **🔥 Firebase & Google Authentication**
+
+**Firebase with Google Authentication Implementation**: When you login with Google, local storage data gets stored in Firebase for backup purposes:
+
+- Google authentication integration
+- Automatic backup of localStorage data to Firebase
+- Real-time data synchronization across devices
+- Secure cloud storage for user data
 
 ---
 
 ## 📁 **Project Structure**
 
-### **Project Architecture**
+This section provides a comprehensive overview of how VistaTasks is organized, showing the file structure and component architecture that demonstrates clean code organization and separation of concerns.
+
+---
+
+### **🏗️ Project Architecture**
 
 ```
 vista-tasks/
