@@ -1,7 +1,10 @@
 export const clearDataLogout = ({ dispatch }) => {
+  // Clear everything except todos
+  localStorage.removeItem("user");
+  // Keep todos in localStorage for backup
 
-    localStorage.clear()
-    dispatch({ type: "CLEAR_TASK", payload: null })
+  // Clear the state
+  dispatch({ type: "CLEAR_TASK", payload: null });
 
-
-}
+  console.log("Logout: User data cleared, todos preserved for backup");
+};

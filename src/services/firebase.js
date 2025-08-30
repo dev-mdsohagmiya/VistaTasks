@@ -1,17 +1,20 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {
-    getAuth,
-    GoogleAuthProvider,
-    signInWithPopup
-} from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs, setDoc, doc, onSnapshot } from "firebase/firestore";
-import { getTodoLocalStorage, getUserLocalStorage } from "../db/localStorage.db";
+    getFirestore,
+    setDoc,
+    doc,
+    onSnapshot,
+    getDoc,
+} from "firebase/firestore";
+import {
+    getTodoLocalStorage,
+    getUserLocalStorage,
+} from "../db/localStorage.db";
+import { toast } from "react-toastify";
 
 
-// Your web app's Firebase configuration
-// Create a .env file to keep your app configurations
-// Find an .env.examples file for reference under the project folder.
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
     authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -27,99 +30,123 @@ const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider();
 const db = getFirestore(app);
 
-
-
 const signInWithGoogle = async () => {
-    try {
-        const res = await signInWithPopup(auth, googleAuthProvider);
-        const user = res.user;
-        return user;
-    } catch (error) {
-        throw (error)
-    }
-}
-
+    const res = await signInWithPopup(auth, googleAuthProvider);
+    const user = res.user;
+    return user;
+};
 
 const addTodoToFirebase = async (data) => {
-    // Add a new document in collection "cities"
-    const user = getUserLocalStorage()
+    console.log("addTodoToFirebase called with data:", data);
+
+    const user = getUserLocalStorage();
+    console.log("User from localStorage:", user);
 
     if (user) {
-        const res = await setDoc(doc(db, "todo", user?.uid), { todos: data });
-        return res
+        try {
+            console.log("Setting document in Firebase for user:", user.uid);
+            const res = await setDoc(doc(db, "todo", user?.uid), { todos: data });
+            console.log("Firebase setDoc result:", res);
+            return res;
+        } catch (error) {
+            console.error("Error in addTodoToFirebase:", error);
+            throw error;
+        }
+    } else {
+        console.log("No user found in localStorage");
+        return null;
     }
-    else {
-        return null
-    }
-
-
-
-
-}
+};
 
 const getTodoFirebase = ({ dispatch }) => {
-    const user = getUserLocalStorage()
+    const user = getUserLocalStorage();
 
     const docRef = doc(db, "todo", user?.uid);
     onSnapshot(docRef, (docSnap) => {
         if (docSnap.exists()) {
-
             if (docSnap.data()?.todos?.length) {
-                dispatch({ type: "UPDATE_TASK_FIREBASE", payload: docSnap.data()?.todos ? docSnap.data().todos : [] })
+                dispatch({
+                    type: "UPDATE_TASK_FIREBASE",
+                    payload: docSnap.data()?.todos ? docSnap.data().todos : [],
+                });
                 console.log("Real-time data:", docSnap.data().todos);
             }
 
             // dispatch
-
-
         } else {
             console.log("No such document!");
         }
     });
-
-}
-
+};
 
 const storeLocalDataForNewUser = async () => {
-    //
-    const user = getUserLocalStorage()
+    const user = getUserLocalStorage();
+    console.log("storeLocalDataForNewUser called with user:", user);
+
+    if (!user) {
+        console.log("No user found in localStorage");
+        return;
+    }
 
     const docRef = doc(db, "todo", user?.uid);
-    onSnapshot(docRef, (docSnap) => {
+    console.log("Checking Firebase document for user:", user.uid);
+
+    // Use getDoc instead of onSnapshot for one-time check
+    try {
+        const docSnap = await getDoc(docRef);
+        console.log("Firebase document exists:", docSnap.exists());
+
         if (docSnap.exists()) {
+            // User already has data in Firebase
+            const firebaseTodos = docSnap.data()?.todos || [];
+            console.log("User already has todos in Firebase:", firebaseTodos.length);
 
-            if (docSnap.data()?.todos?.length) {
-                dispatch({ type: "UPDATE_TASK_FIREBASE", payload: docSnap.data()?.todos ? docSnap.data().todos : [] })
-                console.log("Real-time data:", docSnap.data().todos);
+            if (firebaseTodos.length > 0) {
+                console.log("Firebase todos:", firebaseTodos);
             }
-
-            // dispatch
-
-
         } else {
-            console.log("No such document!");
+            // New user - check if there are todos in localStorage
+            console.log("No Firebase document found for new user");
 
-            //
-            const todos = getTodoLocalStorage()
+            const localTodos = getTodoLocalStorage();
+            console.log("LocalStorage todos:", localTodos);
 
-            if (todos) {
-                console.log("data ")
-                addTodoToFirebase(todos.todos).then(() => {
-                    console.log("data backup successfuly")
-                })
+            // Check if there are todos in localStorage (either from previous session or current)
+            if (localTodos && localTodos.todos && localTodos.todos.length > 0) {
+                console.log("Found todos in localStorage, backing up to Firebase");
+                console.log("Todos to backup:", localTodos.todos);
+
+                try {
+                    const result = await addTodoToFirebase(localTodos.todos);
+                    console.log("Backup result:", result);
+
+                    if (result) {
+                        toast.success("Backup added successfully! 📱");
+                        console.log("Data backup successful");
+                    } else {
+                        toast.error("Backup failed - no result returned");
+                    }
+                } catch (error) {
+                    console.error("Failed to backup data:", error);
+                    toast.error("Failed to backup data");
+                }
+            } else {
+                console.log("No todos found in localStorage or empty todos array");
+                console.log("localTodos:", localTodos);
+
             }
-            console.log("storeLocalDataForNewUser", todos)
-
         }
-    });
+    } catch (error) {
+        console.error("Error checking Firebase document:", error);
+        toast.error("Error checking Firebase document");
+    }
+};
 
-}
-
-
-
-
-
-
-
-
-export { auth, signInWithGoogle, db, addTodoToFirebase, getTodoFirebase, storeLocalDataForNewUser };
+export {
+    auth,
+    signInWithGoogle,
+    db,
+    addTodoToFirebase,
+    getTodoFirebase,
+    storeLocalDataForNewUser,
+};
