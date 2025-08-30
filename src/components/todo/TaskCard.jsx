@@ -1,6 +1,7 @@
 import { Calendar, Edit3, Trash2 } from "lucide-react";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
+import { useTextTruncate } from "../../utils/textTruncate";
 
 export const TaskCard = ({
   todo,
@@ -9,6 +10,9 @@ export const TaskCard = ({
   handleUpdateTask,
   handleTaskCompletation,
 }) => {
+  // Use text truncate hook for description
+  const mobileDescription = useTextTruncate(todo.description, 15);
+  const desktopDescription = useTextTruncate(todo.description, 25);
   const cardVariants = {
     hidden: {
       opacity: 0,
@@ -148,10 +152,13 @@ export const TaskCard = ({
                       : "text-gray-600 dark:text-gray-300"
                   }`}
                 >
-                  {todo.description}
-                  {todo.description.length > 80 && (
-                    <button className="text-blue-500 hover:text-blue-600 ml-1 text-xs">
-                      see more
+                  {mobileDescription.displayText}
+                  {mobileDescription.shouldTruncate && (
+                    <button
+                      onClick={mobileDescription.toggleExpanded}
+                      className="text-blue-500 hover:text-blue-600 ml-1 text-xs transition-colors"
+                    >
+                      {mobileDescription.isExpanded ? "see less" : "see more"}
                     </button>
                   )}
                 </p>
@@ -261,10 +268,13 @@ export const TaskCard = ({
                     : "text-gray-600 dark:text-gray-300"
                 }`}
               >
-                {todo.description}
-                {todo.description.length > 100 && (
-                  <button className="text-blue-500 hover:text-blue-600 ml-1 text-[12px] sm:text-[12px]">
-                    see more
+                {desktopDescription.displayText}
+                {desktopDescription.shouldTruncate && (
+                  <button
+                    onClick={desktopDescription.toggleExpanded}
+                    className="text-blue-500 hover:text-blue-600 ml-1 text-[12px] sm:text-[12px] transition-colors"
+                  >
+                    {desktopDescription.isExpanded ? "see less" : "see more"}
                   </button>
                 )}
               </p>

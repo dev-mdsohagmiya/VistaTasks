@@ -6,7 +6,7 @@ import {
     signInWithPopup
 } from "firebase/auth";
 import { getFirestore, collection, addDoc, getDocs, setDoc, doc, onSnapshot } from "firebase/firestore";
-import { getUserLocalStorage } from "../db/localStorage.db";
+import { getTodoLocalStorage, getUserLocalStorage } from "../db/localStorage.db";
 
 
 // Your web app's Firebase configuration
@@ -80,10 +80,46 @@ const getTodoFirebase = ({ dispatch }) => {
 }
 
 
+const storeLocalDataForNewUser = async () => {
+    //
+    const user = getUserLocalStorage()
+
+    const docRef = doc(db, "todo", user?.uid);
+    onSnapshot(docRef, (docSnap) => {
+        if (docSnap.exists()) {
+
+            if (docSnap.data()?.todos?.length) {
+                dispatch({ type: "UPDATE_TASK_FIREBASE", payload: docSnap.data()?.todos ? docSnap.data().todos : [] })
+                console.log("Real-time data:", docSnap.data().todos);
+            }
+
+            // dispatch
+
+
+        } else {
+            console.log("No such document!");
+
+            //
+            const todos = getTodoLocalStorage()
+
+            if (todos) {
+                console.log("data ")
+                addTodoToFirebase(todos.todos).then(() => {
+                    console.log("data backup successfuly")
+                })
+            }
+            console.log("storeLocalDataForNewUser", todos)
+
+        }
+    });
+
+}
 
 
 
 
 
 
-export { auth, signInWithGoogle, db, addTodoToFirebase, getTodoFirebase };
+
+
+export { auth, signInWithGoogle, db, addTodoToFirebase, getTodoFirebase, storeLocalDataForNewUser };

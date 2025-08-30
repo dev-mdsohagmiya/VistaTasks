@@ -1,6 +1,6 @@
 import { User, Sun, Moon, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { auth, signInWithGoogle } from "../../services/firebase";
+import { auth, signInWithGoogle, storeLocalDataForNewUser } from "../../services/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useContext, useEffect, useRef } from "react";
 import { ThemeContext, TodoContext } from "../../contexts";
@@ -38,6 +38,7 @@ export const Header = ({ stats, showUserMenu, setShowUserMenu }) => {
     addUserLocalStorage(user);
     showSuccessToast(toast, "Login Successful");
     setShowUserMenu(false); // Hide dropdown after login
+    storeLocalDataForNewUser()
     // navigate("/");
   };
 
