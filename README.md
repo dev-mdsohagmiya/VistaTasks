@@ -2,8 +2,7 @@
 
 # **VistaTasks** - Modern Task Management Todo App
 
-Assalamualaikum, dear reviewers.
-This is a task for the role of Front-End Developer Intern at Vistasystech. I have completed it as per the requirements using React, JavaScript, useContext, and useReducer. Additionally, I have added some extra features for backup and better performance. I have also used LocalStorage, Firebase Authentication, and Firebase Storage. The details are explained below.
+Assalamualaikum, dear reviewers, this is a task for the role of Front-End Developer Intern at Vista Systech. I just created a name for this assignment based on the company name, calling it VistaTask. As per the requirements, I have built it using React, JavaScript, useContext, and useReducer. Additionally, I have added some extra features for backup and better performance, such as LocalStorage, Firebase Authentication, and Firebase Storage, which are explained in detail below.
 
 ---
 
@@ -25,7 +24,7 @@ This is a task for the role of Front-End Developer Intern at Vistasystech. I hav
 
 ## 🎥 **Overview Video**
 
-Get a quick glimpse of VistaTasks in action! Watch the video below to see how it simplifies task management.
+In this video, you can quickly and more clearly understand what I have done and how I have done it.
 
 [![Watch the Video](https://via.placeholder.com/800x400/3B82F6/FFFFFF?text=VistaTasks+Demo+Video)](https://youtu.be/your-video-id)
 
@@ -151,7 +150,7 @@ VITE_FIREBASE_MESSAGING_APP_ID=your_app_id
 - Automatic backup of localStorage data to Firebase
 - Real-time data synchronization across devices
 - Secure cloud storage for user data.
-   ![Step 1](./public//docs/google.jpg)
+  ![Step 1](./public//docs/google.jpg)
 
 ### **⌨️ Keyboard Shortcuts & Accessibility**
 
