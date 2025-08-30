@@ -22,13 +22,13 @@ Assalamualaikum, dear reviewers, this is a task for the role of Front-End Develo
 
 ---
 
-## 🎥 **Overview Video**
+## 🎥 **Overview Video (I am adding the video soon...)**
 
 In this video, you can quickly and more clearly understand what I have done and how I have done it.
 
-[![Watch the Video](https://via.placeholder.com/800x400/3B82F6/FFFFFF?text=VistaTasks+Demo+Video)](https://youtu.be/your-video-id)
+[![Watch the Video](./public/docs/youtube.jpg)]()
 
-_Click the image to watch the demo video_
+_Click the image to watch the video_
 
 ---
 
