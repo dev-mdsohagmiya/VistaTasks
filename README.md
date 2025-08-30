@@ -12,7 +12,8 @@ VistaTasks is a feature-rich, modern task management application built with Reac
 2. [🚀 How to Run Locally](#-how-to-run-locally)
 3. [✨ Core Features](#-core-features)
 4. [🎯 Extra Features](#-extra-features)
-5. [🔧 Technology Stack & Project Structure](#-technology-stack--project-structure)
+5. [📁 Project Structure](#-project-structure)
+6. [🔧 Technology Stack](#-technology-stack)
 
 ---
 
@@ -102,7 +103,6 @@ VITE_FIREBASE_MESSAGING_APP_ID=your_app_id
 ### **User Interface**
 
 - 🎨 **Responsive Design**: Works perfectly on all screen sizes
-- 🌙 **Dark/Light Mode**: Toggle between themes for better user experience
 - 📱 **Mobile-First**: Optimized for mobile and tablet devices
 - 🎭 **Smooth Animations**: Beautiful transitions and micro-interactions
 
@@ -121,7 +121,8 @@ VITE_FIREBASE_MESSAGING_APP_ID=your_app_id
 ### **Enhanced User Experience**
 
 - 🎨 **Custom UI Components**: Beautiful, reusable component library
-- 🌈 **Theme System**: Comprehensive dark/light mode implementation
+- 🌙 **Dark/Light Mode**: Toggle between themes for better user experience
+- 🌈 **Theme System**: Comprehensive theme implementation with context
 - 📱 **Responsive Layouts**: Adaptive design for all device types
 - 🎭 **Framer Motion**: Smooth animations and transitions
 - 🎨 **Tailwind CSS**: Modern, utility-first styling framework
@@ -136,27 +137,7 @@ VITE_FIREBASE_MESSAGING_APP_ID=your_app_id
 
 ---
 
-## 🔧 **Technology Stack & Project Structure**
-
-### **Frontend Technologies**
-
-- **React 18**: Modern React with hooks and context
-- **Vite**: Fast build tool and development server
-- **Tailwind CSS**: Utility-first CSS framework
-- **Framer Motion**: Animation library for React
-
-### **Backend & Services**
-
-- **Firebase**: Authentication and database
-- **Firestore**: NoSQL cloud database
-- **Google Auth**: Secure authentication service
-
-### **Development Tools**
-
-- **ESLint**: Code quality and consistency
-- **Prettier**: Code formatting
-- **Git**: Version control
-- **npm**: Package management
+## 📁 **Project Structure**
 
 ### **Project Architecture**
 
@@ -201,6 +182,30 @@ vista-tasks/
 ├── vite.config.js          # Vite configuration
 └── README.md              # This file
 ```
+
+---
+
+## 🔧 **Technology Stack**
+
+### **Frontend Technologies**
+
+- **React 18**: Modern React with hooks and context
+- **Vite**: Fast build tool and development server
+- **Tailwind CSS**: Utility-first CSS framework
+- **Framer Motion**: Animation library for React
+
+### **Backend & Services**
+
+- **Firebase**: Authentication and database
+- **Firestore**: NoSQL cloud database
+- **Google Auth**: Secure authentication service
+
+### **Development Tools**
+
+- **ESLint**: Code quality and consistency
+- **Prettier**: Code formatting
+- **Git**: Version control
+- **npm**: Package management
 
 ---
 
