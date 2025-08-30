@@ -12,8 +12,7 @@ VistaTasks is a feature-rich, modern task management application built with Reac
 2. [🚀 How to Run Locally](#-how-to-run-locally)
 3. [✨ Core Features](#-core-features)
 4. [🎯 Extra Features](#-extra-features)
-5. [🔧 Technology Stack](#-technology-stack)
-6. [📁 Project Structure](#-project-structure)
+5. [🔧 Technology Stack & Project Structure](#-technology-stack--project-structure)
 
 ---
 
@@ -137,9 +136,9 @@ VITE_FIREBASE_MESSAGING_APP_ID=your_app_id
 
 ---
 
-## 🔧 **Technology Stack**
+## 🔧 **Technology Stack & Project Structure**
 
-### **Frontend**
+### **Frontend Technologies**
 
 - **React 18**: Modern React with hooks and context
 - **Vite**: Fast build tool and development server
@@ -159,9 +158,7 @@ VITE_FIREBASE_MESSAGING_APP_ID=your_app_id
 - **Git**: Version control
 - **npm**: Package management
 
----
-
-## 📁 **Project Structure**
+### **Project Architecture**
 
 ```
 vista-tasks/
