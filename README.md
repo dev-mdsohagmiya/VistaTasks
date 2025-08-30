@@ -37,7 +37,7 @@ _Click the image to watch the demo video_
 
 - Node.js (v16 or higher)
 - npm or yarn
-- Firebase account (You can skip this step because I have kept the .env file for a quick run.)
+- Firebase account <span style="color: #f59e0b; font-weight: 600;">(You can skip this step because I have kept the .env file for a quick run.)</span>
 
 ### **Quick Setup**
 
@@ -54,7 +54,7 @@ _Click the image to watch the demo video_
    npm install
    ```
 
-3. **Configure Firebase (You can skip this step because I have kept the .env file for a quick run.)**
+3. **Configure Firebase** <span style="color: #f59e0b; font-weight: 600;">(You can skip this step because I have kept the .env file for a quick run.)</span>
 
    - Create a Firebase project
    - Add your Firebase configuration to `.env` file
@@ -71,7 +71,7 @@ _Click the image to watch the demo video_
    - Sign in with Google
    - Start managing your tasks!
 
-### **Environment Variables (You can also skip this step because I have kept the .env file for a quick run.)**
+### **Environment Variables** <span style="color: #f59e0b; font-weight: 600;">(You can also skip this step because I have kept the .env file for a quick run.)</span>
 
 Create a `.env` file in the root directory:
 
