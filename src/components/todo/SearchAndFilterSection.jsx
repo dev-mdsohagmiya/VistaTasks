@@ -17,7 +17,7 @@ export const SearchAndFilterSection = ({ setSearchTerm, searchTerm, filter, hand
             <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
                 <div className="hidden lg:flex  items-center gap-3">
                     <img
-                        src="/vite.svg"
+                        src="/logo.png"
                         alt="VistaTasks logo"
                         className="w-8 h-8 rounded"
                     />
