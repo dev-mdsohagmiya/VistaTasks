@@ -97,43 +97,47 @@ export const TaskCard = ({
         {/* Mobile Layout */}
         <div className="block sm:hidden">
           <div className="flex items-start gap-3 mb-3">
-            <motion.button
-              onClick={() => handleTaskCompletation(todo.id)}
-              variants={checkboxVariants}
-              animate={todo.isCompleted ? "checked" : "unchecked"}
-              className={`mt-1 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors cursor-pointer flex-shrink-0 ${todo.isCompleted
-                  ? "bg-green-500 border-green-500"
-                  : "border-gray-300 hover:border-green-500"
+            {!todo.isCompleted && (
+              <motion.button
+                onClick={() => handleTaskCompletation(todo.id)}
+                variants={checkboxVariants}
+                animate={todo.isCompleted ? "checked" : "unchecked"}
+                className={`mt-1 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors cursor-pointer flex-shrink-0 ${
+                  todo.isCompleted
+                    ? "bg-green-500 border-green-500"
+                    : "border-gray-300 hover:border-green-500"
                 }`}
-              type="button"
-            >
-              {todo.isCompleted && (
-                <motion.svg
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.2, delay: 0.1 }}
-                  className="w-3 h-3 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </motion.svg>
-              )}
-            </motion.button>
+                type="button"
+              >
+                {todo.isCompleted && (
+                  <motion.svg
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.2, delay: 0.1 }}
+                    className="w-3 h-3 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </motion.svg>
+                )}
+              </motion.button>
+            )}
 
             <div className="flex-1 min-w-0">
               <motion.h3
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
-                className={`font-semibold text-base inline-block mb-2 ${todo.completed
+                className={`font-semibold text-base inline-block mb-2 ${
+                  todo.isCompleted
                     ? "text-gray-500 line-through"
                     : "text-gray-900 dark:text-gray-100"
-                  }`}
+                }`}
               >
                 {todo.title}
               </motion.h3>
@@ -144,10 +148,11 @@ export const TaskCard = ({
                 transition={{ duration: 0.3, delay: 0.2 }}
               >
                 <p
-                  className={`text-xs mb-3 leading-relaxed ${todo.completed
+                  className={`text-xs mb-3 leading-relaxed ${
+                    todo.isCompleted
                       ? "text-gray-400"
                       : "text-gray-600 dark:text-gray-300"
-                    }`}
+                  }`}
                 >
                   {mobileDescription.displayText}
                   {mobileDescription.shouldTruncate && (
@@ -175,7 +180,7 @@ export const TaskCard = ({
 
           {/* Mobile Action Buttons */}
           <div className="flex items-center justify-end gap-2">
-            {!todo.completed && (
+            {!todo.isCompleted && (
               <motion.button
                 onClick={() => {
                   setShowAddModal(true);
@@ -207,45 +212,49 @@ export const TaskCard = ({
         <div className="hidden sm:flex items-center gap-5">
           <div className="flex-6 w-full">
             <div className="flex gap-2 w-full">
-              <div>
-                <motion.button
-                  onClick={() => handleTaskCompletation(todo.id)}
-                  variants={checkboxVariants}
-                  animate={todo.isCompleted ? "checked" : "unchecked"}
-                  className={`mt-1 w-5 h-5 sm:w-5 sm:h-5 rounded border-2 flex items-center justify-center transition-colors cursor-pointer ${todo.isCompleted
-                      ? "bg-green-500 border-green-500"
-                      : "border-gray-300 hover:border-green-500"
+              {!todo.isCompleted && (
+                <div>
+                  <motion.button
+                    onClick={() => handleTaskCompletation(todo.id)}
+                    variants={checkboxVariants}
+                    animate={todo.isCompleted ? "checked" : "unchecked"}
+                    className={`mt-1 w-5 h-5 sm:w-5 sm:h-5 rounded border-2 flex items-center justify-center transition-colors cursor-pointer ${
+                      todo.isCompleted
+                        ? "bg-green-500 border-green-500"
+                        : "border-gray-300 hover:border-green-500"
                     }`}
-                  type="button"
-                >
-                  {todo.isCompleted && (
-                    <motion.svg
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.2, delay: 0.1 }}
-                      className="w-3 h-3 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </motion.svg>
-                  )}
-                </motion.button>
-              </div>
+                    type="button"
+                  >
+                    {todo.isCompleted && (
+                      <motion.svg
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.2, delay: 0.1 }}
+                        className="w-3 h-3 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </motion.svg>
+                    )}
+                  </motion.button>
+                </div>
+              )}
 
               <div>
                 <motion.h3
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: 0.1 }}
-                  className={`font-semibold text-base sm:text-lg inline-block mb-1 sm:mb-2 ${todo.completed
+                  className={`font-semibold text-base sm:text-lg inline-block mb-1 sm:mb-2 ${
+                    todo.isCompleted
                       ? "text-gray-500 line-through"
                       : "text-gray-900 dark:text-gray-100"
-                    }`}
+                  }`}
                 >
                   {todo.title}
                 </motion.h3>
@@ -257,10 +266,11 @@ export const TaskCard = ({
               transition={{ duration: 0.3, delay: 0.2 }}
             >
               <p
-                className={`text-[12px] sm:text-[12px] mb-3 sm:mb-4 leading-relaxed  ${todo.completed
+                className={`text-[12px] sm:text-[12px] mb-3 sm:mb-4 leading-relaxed  ${
+                  todo.isCompleted
                     ? "text-gray-400"
                     : "text-gray-600 dark:text-gray-300"
-                  }`}
+                }`}
               >
                 {desktopDescription.displayText}
                 {desktopDescription.shouldTruncate && (
@@ -286,7 +296,7 @@ export const TaskCard = ({
                 {todo.time}
               </motion.div>
               <div className="flex items-center gap-2 ml-2 sm:ml-4">
-                {!todo.completed && (
+                {!todo.isCompleted && (
                   <motion.button
                     onClick={() => {
                       setShowAddModal(true);

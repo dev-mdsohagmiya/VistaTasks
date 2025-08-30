@@ -14,6 +14,15 @@ export const TasksSection = ({
 }) => {
   const { state, dispatch } = useContext(TodoContext);
 
+  // Clear completed tasks function
+  const handleClearCompleted = () => {
+    const activeTodos = state.todos.filter((todo) => !todo.isCompleted);
+    dispatch({
+      type: "UPDATE_WITH_LOCAL_STORAGE_DATA",
+      payload: { ...state, todos: activeTodos },
+    });
+  };
+
   // data shorting
   const currentTodos = useMemo(() => {
     let currentTodos = [...state?.todos];
@@ -54,6 +63,21 @@ export const TasksSection = ({
   return (
     <>
       <TasksHeader setShowAddModal={setShowAddModal} />
+
+      {/* Clear Completed Button */}
+      {state.todos.filter((todo) => todo.isCompleted).length > 0 && (
+        <div className="flex justify-end mb-4">
+          <motion.button
+            onClick={handleClearCompleted}
+            className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors duration-200"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Clear completed (
+            {state.todos.filter((todo) => todo.isCompleted).length})
+          </motion.button>
+        </div>
+      )}
 
       {hasNoTasks ? (
         <NoTasksFound
