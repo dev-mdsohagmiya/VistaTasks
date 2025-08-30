@@ -14,28 +14,37 @@ export const Home = () => {
 
   // add todo geting from local storage and check for backup
   useEffect(() => {
-    // Check if user is logged in before restoring todos
-    const user = getUserLocalStorage();
-
-    if (user) {
-      // Only restore todos if user is logged in
+    // Restore todos from localStorage if they exist
+    const todosFromStorage = getTodoLocalStorage();
+    if (
+      todosFromStorage &&
+      todosFromStorage.todos &&
+      todosFromStorage.todos.length > 0
+    ) {
       dispatch({
         type: "UPDATE_WITH_LOCAL_STORAGE_DATA",
-        payload: getTodoLocalStorage(),
+        payload: todosFromStorage,
       });
+      console.log("Home: Todos restored from localStorage");
+    } else {
+      // If no todos in localStorage, start with empty state
+      dispatch({
+        type: "CLEAR_TASK",
+        payload: null,
+      });
+      console.log("Home: No todos found, starting with empty state");
+    }
 
+    // Check if user is logged in for backup opportunities
+    const user = getUserLocalStorage();
+    if (user) {
       console.log("Home: User found, checking for backup opportunities");
       // Add delay to ensure Firebase is ready
       setTimeout(() => {
         storeLocalDataForNewUser();
       }, 1000);
     } else {
-      // If no user, clear todos state
-      dispatch({
-        type: "CLEAR_TASK",
-        payload: null,
-      });
-      console.log("Home: No user found, todos cleared");
+      console.log("Home: No user found");
     }
   }, []);
 
